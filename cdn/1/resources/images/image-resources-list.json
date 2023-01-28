@@ -1,0 +1,44 @@
+{
+  "1663878503405": {
+    "originalName": "1637713186307.png",
+    "fileName": "1663878503405.png",
+    "size": 27454,
+    "url": "${appResourceUrl}/images/widget_1/1663878503405.png",
+    "created": 1663878503405,
+    "resourcesPrefix": "images/widget_1",
+    "referedIds": [],
+    "originId": "1663878503405",
+    "fileFormat": "image/png",
+    "isUseCompress": false,
+    "originalWidth": 240,
+    "originalHeight": 240
+  },
+  "1665525014026": {
+    "originalName": "Screen Shot 2022-10-11 at 3.37.22 PM.png",
+    "fileName": "1665525014026.png",
+    "size": 13945,
+    "url": "${appResourceUrl}/images/widget_56/1665525014026.png",
+    "created": 1665525014026,
+    "resourcesPrefix": "images/widget_56",
+    "referedIds": [],
+    "originId": "1665525014026",
+    "fileFormat": "image/png",
+    "isUseCompress": false,
+    "originalWidth": 296,
+    "originalHeight": 332
+  },
+  "1668535134067": {
+    "originalName": "1637785298570.jpeg",
+    "fileName": "1668535134067.jpeg",
+    "size": 146122,
+    "url": "${appResourceUrl}/images/widget_58/1668535134067.jpeg",
+    "created": 1668535134067,
+    "resourcesPrefix": "images/widget_58",
+    "referedIds": [],
+    "originId": "1668535134067",
+    "fileFormat": "image/jpeg",
+    "isUseCompress": false,
+    "originalWidth": 768,
+    "originalHeight": 355
+  }
+}
