@@ -1,0 +1,7 @@
+{
+  "name": "deep-sea-corals-widgets",
+  "type": "exb-web-extension-repo",
+  "description": "Deep sea corals Experience Builder app.",
+  "copyright": "CIRES, University of Colorado",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0"
+}
