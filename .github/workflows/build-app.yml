@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.3.0
       - name: Download Experience Builder
         run: npx arcgis-lib-downloader -p arcgis-experience-builder -v 1.9
         env:
@@ -64,7 +64,7 @@ jobs:
           serve . -p 5000 &
           pageres http://localhost:5000/index.html 1024x768 --filename=screenshot --delay=10
       - name: Deploy app zip to GH Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4.4.1
         with:
           branch: gh-pages
           folder: arcgis-experience-builder-1.9/ArcGISExperienceBuilder/app
