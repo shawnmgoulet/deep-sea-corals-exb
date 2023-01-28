@@ -4,4 +4,6 @@ webapp to discover and access data from [NOAA's National Database for Deep-Sea C
 
 This repo contains the configuration used by the Experience Builder platform as well as the src for the custom widgets specific to this project.
 
-GitHub action to automatically build and deploy to GitHub Pages based on [example](https://github.com/gavinr/experience-builder-devops-example) by [gavinr](https://github.com/gavinr). Preview built [application](https://ci-cmg.github.io/deep-sea-corals-exb/)
+Repository includes GitHub [action](.github/workflows/build-app.yml) to automatically build and deploy to GitHub Pages based on [example](https://github.com/gavinr/experience-builder-devops-example) by [gavinr](https://github.com/gavinr).
+
+Preview application [here](https://ci-cmg.github.io/deep-sea-corals-exb/).
