@@ -63,7 +63,7 @@ async function countAllSamples (dataSource: QueriableDataSource) {
 }
 
 export default function Widget (props: AllWidgetProps<IMConfig>) {
-  console.log('re-rendering filtered-record-count...')
+  // console.log('re-rendering filtered-record-count...')
   const [totalRecordCount, setTotalRecordCount] = useState(null)
   const [filteredRecordCount, setFilteredRecordCount] = useState(null)
   const [dataSource, setDataSource] = useState<FeatureLayerDataSource>()
@@ -79,12 +79,10 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   // console.log(`rendering filtered-record-count. extent: ${convertAndFormatCoordinates(widgetState?.extent)}, queryParams: ${widgetState?.queryParams}`)
 
   useEffect(() => {
-    console.log('inside useEffect...')
     if (!view) { return }
 
     const mapView = view.view
     // dataSource.getCurrentQueryParams().where and mapview layer.definitionExpression should be equal
-
     // const featureLayer = dataSource.layer
     const layer = mapView.map.layers.find(lyr => lyr.title === dataSource.layer.title) as FeatureLayer
     const jimuLayerView = Object.values(view.jimuLayerViews).find(view => view.layerDataSourceId === dataSource.id)
@@ -97,7 +95,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
     }
 
     // use FeatureLayer#queryFeatureCount
-    function featureLayerFeatureCount () {
+    function serverSideFeatureCount () {
       // cancel any running request
       if (abortControllerRef.current) {
         abortControllerRef.current.abort()
@@ -110,14 +108,14 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         where: layer.definitionExpression
       },
       { signal: abortControllerRef.current.signal }).then(result => {
-        console.log(`featureLayerFeatureCount complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
-        console.log('featureLayerFeatureCount: ', result)
+        console.log(`serverSideFeatureCount complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
+        console.log('serverSideFeatureCount: ', result)
         setFilteredRecordCount(result)
       }).catch((reason) => {
         if (reason.name === 'AbortError') {
           console.log('cancelled running request')
         } else {
-          console.error('featureLayerFeatureCount failed: ', reason)
+          console.error('serverSideFeatureCount failed: ', reason)
           setServerError(true)
         }
       }).finally(() => {
@@ -127,10 +125,6 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
 
     // client-side query only reports on visible features are visible so doesn't work when Webmap scale dependency set
     function clientSideFeatureCount () {
-      if (!(dataSource && view)) {
-        console.warn('DataSource and/or MapView not yet available - cannot get record count')
-        return
-      }
       const startTime = new Date()
       
       const q =  {
@@ -179,7 +173,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         setFilteredRecordCount(null)
         setServerError(false)
         if (layerView.suspended) {
-          featureLayerFeatureCount()
+          serverSideFeatureCount()
           // dataSourceFeatureCount()
         } else {
           // clientSideFeatureCount only produces results when scale threshold has 
