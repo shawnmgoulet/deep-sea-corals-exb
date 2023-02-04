@@ -18,7 +18,7 @@ import { IMConfig } from '../config'
 import defaultMessages from './translations/default'
 import FeatureLayerView from 'esri/views/layers/FeatureLayerView'
 import FeatureLayer from 'esri/layers/FeatureLayer'
-import reactiveUtils from 'esri/core/reactiveUtils'
+import reactiveUtils, { watch } from 'esri/core/reactiveUtils'
 import MapView from 'esri/views/MapView'
 import LayerView from 'esri/views/layers/LayerView'
 import './widget.css'
@@ -79,6 +79,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   // console.log(`rendering filtered-record-count. extent: ${convertAndFormatCoordinates(widgetState?.extent)}, queryParams: ${widgetState?.queryParams}`)
 
   useEffect(() => {
+    console.log('inside useEffect...')
     if (!view) { return }
 
     const mapView = view.view
@@ -136,10 +137,6 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         where: layer.definitionExpression || '1=1',
         geometry: mapView.extent
       }
-      console.log(q)
-      // TODO pass AbortController?
-      // TODO not working right. Gives different results than FeatureLayer#queryFeatureCount and 
-      // does not update count when layerDefinition is empty (works with extent change)
       layerView.queryFeatureCount(q).then(count => {
         console.log(`clientSideFeatureCount complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
         console.log('clientSideFeatureCount: ', count)
@@ -149,7 +146,8 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       })
     }
 
-    // use FeatureLayerDataSource#loadCount
+    // alternate way of performing server-side count using FeatureLayerDataSource#loadCount.
+    // Often a little faster than FeatureLayer#queryFeatureCount but no way to cancel 
     function dataSourceFeatureCount () {
       // async request timeout idea taken from  Faraz K. Kelhini, "Modern Asynchronous JavaScript"
       const timeOut = 20000
@@ -161,12 +159,12 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
 
       const startTime = new Date()
       const queryParams = dataSource?.getCurrentQueryParams()
-      // TODO any way to pass AbortController.signal or should move to FeatureLayer#queryFeatureCount?
       Promise.race([
         dataSource.loadCount(queryParams, { widgetId: props.id }),
         failure
       ]).then((count) => {
-        // console.log(`dataSourceFeatureCount complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
+        console.log(`dataSourceFeatureCount complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
+        console.log(count)
         setFilteredRecordCount(count)
       }).catch((reason) => {
         console.error('datasourceFeatureCount failed: ', reason)
@@ -174,67 +172,29 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       })
     }
 
-    /**
-     * entry point for getting updated feature count. Chooses optimum strategy
-     * to get counts
-     */
-    function countFilteredFeatures () {
-      setFilteredRecordCount(null)
-      setServerError(false)
-      // TODO clientSideFeatureCount not working properly
-      // if (layerView.suspended) {
-        featureLayerFeatureCount()
-        // DataSource#loadCount generally a little faster than using FeatureLayer but 
-        // cannot take AbortController
-        //dataSourceFeatureCount()
-      // } else {
-        // clientSideFeatureCount only produces results when scale threshold has 
-        // been crossed and points display
-        // clientSideFeatureCount()
-      // }
-    }
-
-    const extentWatchHandle = reactiveUtils.when(
-      () => mapView.stationary,
+    const watchHandle = reactiveUtils.when(
+      () => !mapView.updating,
       () => {
-        // console.log('filtered-record-count: extent changed, updating filteredRecordCount...')
-        countFilteredFeatures()
-      })
-
-    const layerDefinitionWatchHandle = reactiveUtils.watch(
-      () => layer.definitionExpression,
-      () => {
-        console.log(`filtered-record-count: layer definitionExpression changed to ${layer.definitionExpression}, updating filteredRecordCount...`)
-        countFilteredFeatures()
-      })
+        console.log('view no longer updating. updating feature counts...')
+        setFilteredRecordCount(null)
+        setServerError(false)
+        if (layerView.suspended) {
+          featureLayerFeatureCount()
+          // dataSourceFeatureCount()
+        } else {
+          // clientSideFeatureCount only produces results when scale threshold has 
+          // been crossed and points display
+          clientSideFeatureCount()
+        }
+      }
+    );
 
     return () => {
-      extentWatchHandle.remove()
-      layerDefinitionWatchHandle.remove()
+      console.log('cleaning up watchHandle...')
+      watchHandle.remove()
     }
   }, [view, dataSource])
 
-  function serverSideFeatureCount () {
-    if (!(dataSource && view)) {
-      // console.warn('DataSource and/or MapView not yet available - cannot get record count')
-      return
-    }
-    const mapView = view.view
-    const featureLayer = dataSource.layer
-    featureLayer.queryFeatureCount({
-      geometry: mapView.extent
-    }).then(result => {
-      setFilteredRecordCount(result)
-    })
-
-    // TODO why is this always the unfiltered count?
-    // const countQueryParams: FeatureLayerQueryParams = {
-    //   geometry: mapView.extent
-    // }
-    // dataSource.queryCount(countQueryParams).then(result => {
-    //   return result.count
-    // })
-  }
 
   // runs once
   function onDataSourceCreated (ds: DataSource) {
@@ -276,8 +236,6 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       />
 
       {formatCounts()}
-      {/* <p>Extent: {widgetState?.extent ? convertAndFormatCoordinates(widgetState.extent, 3) : ''}</p>
-      <p>Filter: {widgetState?.queryParams ? widgetState.queryParams : 'none'}</p> */}
     </div>
   )
 }
