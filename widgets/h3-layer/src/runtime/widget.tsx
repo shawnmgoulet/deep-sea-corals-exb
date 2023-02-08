@@ -265,7 +265,15 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
       jmv.view.on('click', (evt) => {
         console.log('mapclick detected: ', evt)
         const startTimeForPopup = new Date()
-
+        // TODO this is where flow stops when it fails to handle map click
+        jmv.view
+        .hitTest(evt, hitTestOptions)
+        .then((response) => mapClickHandler(response))
+        .finally(() => {
+          const elapsedMillisecsForPopup = new Date().getTime() - startTimeForPopup.getTime()
+          console.log(`popup completed in ${elapsedMillisecsForPopup / 1000} seconds`)
+        })
+/*
         // attempt to delay execution of hitTest on points, hexbin layers until webmap popup completes
         jmv.view.popup.fetchFeatures(evt).then((response) => {
           // default to empty array to keep TypeScript happy
@@ -284,7 +292,10 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
                 console.log(`hitTest completed in ${elapsedMillisecsForHitTest / 1000} seconds`)
               })
           }) // end promisesPerLayerView
-        }) // end popup.fetchFeatures
+          .finally(() => console.log('end promisesPerLayerView'))
+        })
+        .finally(() => console.log('end popup.fetchFeatures')) // end popup.fetchFeatures
+  */
       }) // end view on click
     }) // end MapView#when
   } // end activeViewChangeHandler
