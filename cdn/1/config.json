@@ -1618,6 +1618,15 @@
         "SECOND": {
           "LARGE": "layout_5"
         }
+      },
+      "style": {
+        "background": {
+          "color": "var(--org-button-color)",
+          "fillType": "fit",
+          "image": {
+            "url": ""
+          }
+        }
       }
     },
     "widget_8": {
@@ -1692,6 +1701,15 @@
         "SECOND": {
           "LARGE": "layout_7"
         }
+      },
+      "style": {
+        "background": {
+          "color": "var(--org-button-color)",
+          "fillType": "fit",
+          "image": {
+            "url": ""
+          }
+        }
       }
     },
     "widget_9": {
@@ -1762,7 +1780,7 @@
       },
       "style": {
         "background": {
-          "color": "",
+          "color": "#ffffff",
           "fillType": "fit",
           "image": {
             "url": ""
@@ -3541,28 +3559,40 @@
       "label": "Models",
       "layout": {
         "LARGE": "layout_26"
-      }
+      },
+      "backgroundPosition": "fit",
+      "backgroundColor": "var(--org-button-color)",
+      "backgroundIMage": {}
     },
     "view_3": {
       "id": "view_3",
       "label": "Taxon",
       "layout": {
         "LARGE": "layout_27"
-      }
+      },
+      "backgroundPosition": "fit",
+      "backgroundColor": "var(--org-button-color)",
+      "backgroundIMage": {}
     },
     "view_4": {
       "id": "view_4",
       "label": "Detail",
       "layout": {
         "LARGE": "layout_28"
-      }
+      },
+      "backgroundPosition": "fit",
+      "backgroundColor": "var(--org-button-color)",
+      "backgroundIMage": {}
     },
     "view_5": {
       "id": "view_5",
       "label": "Summary",
       "layout": {
         "LARGE": "layout_29"
-      }
+      },
+      "backgroundPosition": "fit",
+      "backgroundColor": "var(--org-button-color)",
+      "backgroundIMage": {}
     }
   },
   "sections": {
@@ -4047,7 +4077,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1674954414116,
+  "timestamp": 1675581214283,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
