@@ -70,20 +70,16 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   const [view, setView] = useState<JimuMapView>(null)
   const [serverError, setServerError] = useState(false)
   const abortControllerRef = useRef<AbortController>()
-
-  // get state for this widget. Any change in widgetState, e.g. change of map extent
-  // or datasource filter, causes widget to re-render
-  // const widgetState = useSelector((state: IMState) => {
-  //   return state.widgetsState[props.widgetId]
-  // })
-  // console.log(`rendering filtered-record-count. extent: ${convertAndFormatCoordinates(widgetState?.extent)}, queryParams: ${widgetState?.queryParams}`)
+  const [mapExtent, setMapExtent] = useState<Extent>()
+  const [layerDefinition, setLayerDefinition] = useState<string>()
+  const mapLayerRef = useRef<FeatureLayer>()
+  const layerViewRef = useRef<FeatureLayerView>()
 
   useEffect(() => {
     if (!view) { return }
 
     const mapView = view.view
     // dataSource.getCurrentQueryParams().where and mapview layer.definitionExpression should be equal
-    // const featureLayer = dataSource.layer
     const layer = mapView.map.layers.find(lyr => lyr.title === dataSource.layer.title) as FeatureLayer
     const jimuLayerView = Object.values(view.jimuLayerViews).find(view => view.layerDataSourceId === dataSource.id)
     let layerView: FeatureLayerView
@@ -166,25 +162,52 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       })
     }
 
+    setFilteredRecordCount(null)
+    setServerError(false)
+    if (layerView.suspended) {
+      serverSideFeatureCount()
+      // dataSourceFeatureCount()
+    } else {
+      // clientSideFeatureCount only produces results when scale threshold has 
+      // been crossed and points display
+      clientSideFeatureCount()
+    }
+  }, [mapExtent, layerDefinition])
+
+
+  // get state for this widget. Any change in widgetState, e.g. change of map extent
+  // or datasource filter, causes widget to re-render
+  // const widgetState = useSelector((state: IMState) => {
+  //   return state.widgetsState[props.widgetId]
+  // })
+  // console.log(`rendering filtered-record-count. extent: ${convertAndFormatCoordinates(widgetState?.extent)}, queryParams: ${widgetState?.queryParams}`)
+
+
+  useEffect(() => {
+    if (!view) { return }
+    // used in server-side query
+    mapLayerRef.current = view.view.map.layers.find(lyr => lyr.title === dataSource.layer.title) as FeatureLayer
+    
+    // used in client-side query
+    const jimuLayerView = Object.values(view.jimuLayerViews).find(view => view.layerDataSourceId === dataSource.id)
+    if (jimuLayerView.view.layer.type === 'feature') {
+      layerViewRef.current = jimuLayerView.view as FeatureLayerView
+    } else {
+      console.error(`expected FeatureLayerView, but found ${jimuLayerView.view.layer.type}`)
+    }
+
+    // map redraws graphics layer for most map clicks, so useEffect ensures counts
+    // are only updated for extent, filter changes
     const watchHandle = reactiveUtils.when(
-      () => !mapView.updating,
+      () => !view.view.updating,
       () => {
-        console.log('view no longer updating. updating feature counts...')
-        setFilteredRecordCount(null)
-        setServerError(false)
-        if (layerView.suspended) {
-          serverSideFeatureCount()
-          // dataSourceFeatureCount()
-        } else {
-          // clientSideFeatureCount only produces results when scale threshold has 
-          // been crossed and points display
-          clientSideFeatureCount()
-        }
+        setMapExtent(view.view.extent)
+        setLayerDefinition(mapLayerRef.current.definitionExpression)
       }
     );
 
     return () => {
-      console.log('cleaning up watchHandle...')
+      // console.log('cleaning up watchHandle...')
       watchHandle.remove()
     }
   }, [view, dataSource])
