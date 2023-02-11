@@ -4,6 +4,7 @@
 # "set -x" caused build to fail in this case 
 #set -ex
 
+# BUILD_NUMBER variable causes Esri webpack problems
 export BUILD_NUMBER=
 
 # install Node.js
@@ -66,4 +67,10 @@ cd $WORKSPACE
 mkdir dist
 mv -i arcgis-experience-builder-${EXB_VERSION}/ArcGISExperienceBuilder/app.zip dist
 echo "unzip app.zip and grant o+rx to directories and o+r to files" > dist/README
-
+if [ -f dist/app.zip ]; then
+  # TODO deploy app.zip?
+  echo "successfully built artifact app.zip"
+else
+  echo "ERROR: artifact app.zip not found"
+  exit 1
+fi
