@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # "npm audit fix" returns a non-0 exit code if any vulnerability cannot be addressed automatically
-# "set -x" caused build to fail in this case 
+# "set -e" caused build to fail in this case 
 #set -ex
 
 # BUILD_NUMBER variable causes Esri webpack problems
