@@ -17,8 +17,9 @@ echo installed `node --version`
 EXB_VERSION=1.9
 # ARCGIS_LIB_DOWNLOADER_USERNAME, ARCGIS_LIB_DOWNLOADER_PASSWORD env vars set via Jenkins credentials
 npx arcgis-lib-downloader -p arcgis-experience-builder -v $EXB_VERSION
+# unzip not on CI-CMG Jenkins instance by default. "--quiet" option not working
+apt-get --quiet install unzip
 unzip -q arcgis-experience-builder-${EXB_VERSION}.zip -d arcgis-experience-builder-${EXB_VERSION}
-
 
 # Copy Custom Widgets
 cp -r widgets/* arcgis-experience-builder-${EXB_VERSION}/ArcGISExperienceBuilder/client/your-extensions/widgets
