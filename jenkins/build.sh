@@ -8,12 +8,10 @@ export BUILD_NUMBER=
 
 # install Node.js
 NODE_VERSION=node-v16.19.0-linux-x64
-DOWNLOAD_URL=https://nodejs.org/dist/latest-v16.x/${NODE_VERSION}.tar.xz
-apt-get --quiet install unzip
-wget -q $DOWNLOAD_URL
-xz --decompress ${NODE_VERSION}.tar.xz --stdout | tar xf -
+DOWNLOAD_URL=https://nodejs.org/dist/latest-v16.x/${NODE_VERSION}.tar.gz
+wget --quiet -O - $DOWNLOAD_URL | tar xz
 export PATH="$WORKSPACE/$NODE_VERSION/bin":$PATH
-
+echo installed `node --version`
 
 # download ArcGIS Experience Builder Developer Edition
 EXB_VERSION=1.9
