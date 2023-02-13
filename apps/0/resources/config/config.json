@@ -492,10 +492,10 @@
         "3": {
           "type": "WIDGET",
           "bbox": {
-            "left": "5.00px",
+            "left": "0.00px",
             "top": "100.00px",
-            "width": "5.8%",
-            "height": "15.8%",
+            "width": "60.00px",
+            "height": "120.00px",
             "right": "93.6%",
             "bottom": "72.6%"
           },
@@ -4081,7 +4081,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1675581214283,
+  "timestamp": 1676349942541,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
