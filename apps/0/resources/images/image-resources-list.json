@@ -40,5 +40,33 @@
     "isUseCompress": false,
     "originalWidth": 768,
     "originalHeight": 355
+  },
+  "1676325786130": {
+    "originalName": "horizontal_legend.png",
+    "fileName": "1676325786130.png",
+    "size": 1677,
+    "url": "${appResourceUrl}/images/widget_87/1676325786130.png",
+    "created": 1676325786130,
+    "resourcesPrefix": "images/widget_87",
+    "referedIds": [],
+    "originId": "1676325786130",
+    "fileFormat": "image/png",
+    "isUseCompress": false,
+    "originalWidth": 310,
+    "originalHeight": 60
+  },
+  "1676325793830": {
+    "originalName": "horizontal_legend1.png",
+    "fileName": "1676325793830.png",
+    "size": 1659,
+    "url": "${appResourceUrl}/images/widget_87/1676325793830.png",
+    "created": 1676325793830,
+    "resourcesPrefix": "images/widget_87",
+    "referedIds": [],
+    "originId": "1676325793830",
+    "fileFormat": "image/png",
+    "isUseCompress": false,
+    "originalWidth": 310,
+    "originalHeight": 60
   }
 }
