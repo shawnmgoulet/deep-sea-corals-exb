@@ -492,10 +492,10 @@
         "3": {
           "type": "WIDGET",
           "bbox": {
-            "left": "5.00px",
+            "left": "0.00px",
             "top": "100.00px",
-            "width": "5.8%",
-            "height": "15.8%",
+            "width": "60.00px",
+            "height": "120.00px",
             "right": "93.6%",
             "bottom": "72.6%"
           },
@@ -602,7 +602,7 @@
           "type": "WIDGET",
           "bbox": {
             "left": 0,
-            "width": 2,
+            "width": 3,
             "height": "25px"
           },
           "widgetId": "widget_86",
@@ -884,17 +884,20 @@
               "bottom": false,
               "height": "STRETCH"
             },
-            "lockParent": true
+            "lockParent": true,
+            "vCenter": false,
+            "hCenter": false
           },
           "bbox": {
             "left": "0.0%",
             "right": "0.0%",
-            "top": "22px",
+            "top": "21px",
             "bottom": "0.0%",
             "width": "100.0%",
-            "height": "95.6%"
+            "height": "97.7%"
           },
-          "widgetId": "widget_18"
+          "widgetId": "widget_18",
+          "isPending": false
         },
         "1": {
           "type": "WIDGET",
@@ -933,7 +936,9 @@
       "order": [
         "0",
         "1",
-        "2"
+        "2",
+        "3",
+        "4"
       ],
       "content": {
         "0": {
@@ -983,7 +988,8 @@
             "heightMode": "ratio",
             "aspectRatio": 1.01,
             "hCenter": true
-          }
+          },
+          "isPending": true
         },
         "2": {
           "type": "WIDGET",
@@ -1003,6 +1009,50 @@
               "top": false,
               "bottom": true,
               "width": "AUTO",
+              "height": "AUTO"
+            }
+          }
+        },
+        "3": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "0.0%",
+            "right": "0.0%",
+            "top": "89.9%",
+            "bottom": "30.00px",
+            "width": "300px",
+            "height": "60px"
+          },
+          "widgetId": "widget_87",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": true,
+              "bottom": false
+            },
+            "vCenter": false,
+            "hCenter": false
+          },
+          "isPending": false
+        },
+        "4": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "0.0%",
+            "right": "0.0%",
+            "top": "55.6%",
+            "bottom": "0.0%",
+            "width": "100.0%",
+            "height": "44.4%"
+          },
+          "widgetId": "widget_91",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": true,
+              "bottom": false,
               "height": "AUTO"
             }
           }
@@ -1382,11 +1432,63 @@
       "order": [
         "0"
       ]
+    },
+    "layout_36": {
+      "type": "ROW",
+      "label": "Default",
+      "setting": {
+        "space": 0,
+        "style": {
+          "padding": {
+            "number": [
+              0,
+              5,
+              5,
+              5
+            ],
+            "unit": "px"
+          }
+        }
+      },
+      "order": [
+        "1",
+        "0"
+      ],
+      "content": {
+        "0": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": 7,
+            "width": 5,
+            "height": "50px"
+          },
+          "widgetId": "widget_89",
+          "setting": {
+            "autoProps": {
+              "height": "STRETCH"
+            }
+          }
+        },
+        "1": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": 0,
+            "width": 5,
+            "height": "48px"
+          },
+          "widgetId": "widget_90",
+          "setting": {
+            "autoProps": {
+              "height": "STRETCH"
+            }
+          }
+        }
+      }
     }
   },
   "exbVersion": "1.9.0",
   "mainSizeMode": "LARGE",
-  "theme": "themes/default/",
+  "theme": "themes/demo-theme/",
   "forBuilderAttributes": {
     "lockLayout": false,
     "viewPortSize": {
@@ -3540,6 +3642,84 @@
           }
         }
       }
+    },
+    "widget_87": {
+      "uri": "widgets/common/image/",
+      "version": "1.9.0",
+      "label": "Image 4",
+      "config": {
+        "functionConfig": {
+          "altText": "",
+          "toolTip": "",
+          "linkParam": {},
+          "scale": "Fit",
+          "imageParam": {
+            "url": "${appResourceUrl}/images/widget_87/1676325793830.png",
+            "originalUrl": "${appResourceUrl}/images/widget_87/1676325793830.png",
+            "fileName": "1676325793830.png",
+            "originalName": "horizontal_legend1.png",
+            "imgSourceType": "BY_UPLOAD",
+            "fileFormat": "image/png",
+            "originalId": "1676325793830",
+            "isUseCompress": false,
+            "originalWidth": 310,
+            "originalHeight": 60
+          },
+          "imageDisplayQualityMode": "ORIGINAL",
+          "imgSourceType": "",
+          "srcExpression": null
+        },
+        "styleConfig": {}
+      },
+      "id": "widget_87"
+    },
+    "widget_89": {
+      "uri": "widgets/common/text/",
+      "version": "1.9.0",
+      "label": "Text 16",
+      "config": {
+        "text": "<p style=\"text-align: right;\"><strong style=\"font-size: 14px;\">Lowest Density</strong></p>",
+        "style": {
+          "verticalAlign": "start",
+          "wrap": true
+        }
+      },
+      "id": "widget_89"
+    },
+    "widget_90": {
+      "uri": "widgets/common/text/",
+      "version": "1.9.0",
+      "label": "Text 17",
+      "config": {
+        "text": "<p><strong style=\"font-size: 14px;\">Highest Density</strong></p>",
+        "style": {
+          "verticalAlign": "start",
+          "wrap": true
+        }
+      },
+      "id": "widget_90"
+    },
+    "widget_91": {
+      "uri": "widgets/layout/row/",
+      "version": "1.9.0",
+      "label": "Row 8",
+      "config": {
+        "space": 10,
+        "style": {
+          "padding": {
+            "number": [
+              10
+            ],
+            "unit": "px"
+          }
+        }
+      },
+      "id": "widget_91",
+      "layouts": {
+        "DEFAULT": {
+          "LARGE": "layout_36"
+        }
+      }
     }
   },
   "widgetsManifest": {},
@@ -3672,7 +3852,7 @@
         "LARGE": "layout_30"
       },
       "index": 1,
-      "isSplash": false,
+      "isSplash": true,
       "label": "Splash Screen"
     },
     "dialog_4": {
@@ -4071,7 +4251,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1675581214283,
+  "timestamp": 1676417535874,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
@@ -4080,5 +4260,6 @@
       "LARGE": "25px"
     },
     "backgroundColor": "#112e51"
-  }
+  },
+  "customTheme": {}
 }
