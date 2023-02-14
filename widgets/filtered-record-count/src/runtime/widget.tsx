@@ -122,8 +122,8 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
     // client-side query only reports on visible features are visible so doesn't work when Webmap scale dependency set
     function clientSideFeatureCount () {
       const startTime = new Date()
-      
-      const q =  {
+
+      const q = {
         where: layer.definitionExpression || '1=1',
         geometry: mapView.extent
       }
@@ -136,8 +136,9 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       })
     }
 
+    /*
     // alternate way of performing server-side count using FeatureLayerDataSource#loadCount.
-    // Often a little faster than FeatureLayer#queryFeatureCount but no way to cancel 
+    // Often a little faster than FeatureLayer#queryFeatureCount but no way to cancel
     function dataSourceFeatureCount () {
       // async request timeout idea taken from  Faraz K. Kelhini, "Modern Asynchronous JavaScript"
       const timeOut = 20000
@@ -161,7 +162,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         setServerError(true)
       })
     }
-
+    */
     setFilteredRecordCount(null)
     setServerError(false)
     if (layerView.suspended) {
@@ -174,7 +175,6 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
     }
   }, [mapExtent, layerDefinition])
 
-
   // get state for this widget. Any change in widgetState, e.g. change of map extent
   // or datasource filter, causes widget to re-render
   // const widgetState = useSelector((state: IMState) => {
@@ -182,12 +182,11 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   // })
   // console.log(`rendering filtered-record-count. extent: ${convertAndFormatCoordinates(widgetState?.extent)}, queryParams: ${widgetState?.queryParams}`)
 
-
   useEffect(() => {
     if (!view) { return }
     // used in server-side query
     mapLayerRef.current = view.view.map.layers.find(lyr => lyr.title === dataSource.layer.title) as FeatureLayer
-    
+
     // used in client-side query
     const jimuLayerView = Object.values(view.jimuLayerViews).find(view => view.layerDataSourceId === dataSource.id)
     if (jimuLayerView.view.layer.type === 'feature') {
@@ -204,14 +203,13 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         setMapExtent(view.view.extent)
         setLayerDefinition(mapLayerRef.current.definitionExpression)
       }
-    );
+    )
 
     return () => {
       // console.log('cleaning up watchHandle...')
       watchHandle.remove()
     }
   }, [view, dataSource])
-
 
   // runs once
   function onDataSourceCreated (ds: DataSource) {
