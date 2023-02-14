@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { IMConfig } from '../config'
 import defaultMessage from './translations/default'
 import { CalciteButton, CalciteIcon, CalciteTooltip } from 'calcite-components'
+import './widget.css'
 
 export default function Widget (props: AllWidgetProps<IMConfig>) {
   const buttonRef = useRef()
@@ -15,7 +16,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
     <>
     {/* <CalciteButton id="downloadButton" onClick={onClickHandler}><CalciteIcon id="buttonIcon" ref={buttonRef} icon="download" /></CalciteButton> */}
     <Tooltip title='download data via ERDDAP'>
-    <CalciteButton id="downloadButton" ref={buttonRef} name="download" onClick={onClickHandler} iconEnd='download'>Download</CalciteButton>
+    <CalciteButton className="primaryColorOverride" id="downloadButton" ref={buttonRef} name="download" onClick={onClickHandler} iconEnd='download'>Download</CalciteButton>
     </Tooltip>
     </>
   )
