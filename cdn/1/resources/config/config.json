@@ -3864,7 +3864,7 @@
         "LARGE": "layout_30"
       },
       "index": 1,
-      "isSplash": false,
+      "isSplash": true,
       "label": "Splash Screen"
     },
     "dialog_4": {
@@ -4263,7 +4263,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1676356123021,
+  "timestamp": 1676418221754,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
@@ -4272,5 +4272,6 @@
       "LARGE": "25px"
     },
     "backgroundColor": "#112e51"
-  }
+  },
+  "customTheme": {}
 }
