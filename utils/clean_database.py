@@ -45,8 +45,8 @@ def main(in_filename, out_filename, overwrite_output=False):
     add_h3_index(df, 'h3_2', 4)
 
     # map categorical values to ints
-    # substitute_ocean_values(df)
-    # substitute_fmc_values(df)
+    substitute_ocean_values(df)
+    substitute_fmc_values(df)
     # substitute_lme_values(df)
     # substitute_meow_values(df)
 
