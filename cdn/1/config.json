@@ -11,7 +11,8 @@
       "isVisible": true,
       "label": "Page",
       "header": true,
-      "footer": true
+      "footer": true,
+      "autoOpenDialogId": ""
     }
   },
   "layouts": {
@@ -56,7 +57,9 @@
         "2",
         "4",
         "5",
-        "6"
+        "6",
+        "7",
+        "8"
       ],
       "content": {
         "0": {
@@ -175,7 +178,7 @@
             "vCenter": true,
             "hCenter": false
           },
-          "isPending": false
+          "isPending": true
         },
         "6": {
           "type": "WIDGET",
@@ -198,6 +201,50 @@
               "height": "AUTO"
             },
             "vCenter": true
+          },
+          "isPending": true
+        },
+        "7": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "82.3%",
+            "right": "20.00px",
+            "top": "50%",
+            "bottom": "8.3%",
+            "width": "120.00px",
+            "height": "40.00px"
+          },
+          "widgetId": "widget_95",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": false,
+              "bottom": true,
+              "height": "CUSTOM"
+            },
+            "vCenter": true
+          }
+        },
+        "8": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "64.7%",
+            "right": "160.00px",
+            "top": "50%",
+            "bottom": "0.00px",
+            "width": "120.00px",
+            "height": "40.00px"
+          },
+          "widgetId": "widget_96",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": false,
+              "bottom": true
+            },
+            "vCenter": true
           }
         }
       }
@@ -207,7 +254,8 @@
       "label": "First",
       "order": [
         "0",
-        "1"
+        "1",
+        "2"
       ],
       "content": {
         "0": {
@@ -240,10 +288,10 @@
           "bbox": {
             "left": "0.0%",
             "right": "0.0%",
-            "top": "325.00px",
-            "bottom": "0.00%",
+            "top": "345px",
+            "bottom": "0.0%",
             "width": "100.0%",
-            "height": "48.7%"
+            "height": "63.1%"
           },
           "widgetId": "widget_49",
           "setting": {
@@ -254,8 +302,36 @@
               "bottom": false,
               "width": "STRETCH",
               "height": "STRETCH"
-            }
-          }
+            },
+            "vCenter": false,
+            "hCenter": false
+          },
+          "isPending": false
+        },
+        "2": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "94.3%",
+            "right": "0.00%",
+            "top": "325.00px",
+            "bottom": "63.7%",
+            "width": "5.8%",
+            "height": "2.1%"
+          },
+          "widgetId": "widget_94",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": false,
+              "bottom": true,
+              "width": "AUTO",
+              "height": "AUTO"
+            },
+            "vCenter": false,
+            "hCenter": false
+          },
+          "isPending": false
         }
       }
     },
@@ -328,7 +404,8 @@
       "type": "FIXED",
       "label": "Second",
       "order": [
-        "0"
+        "0",
+        "1"
       ],
       "content": {
         "0": {
@@ -336,7 +413,7 @@
           "bbox": {
             "left": "0.0%",
             "right": "0.0%",
-            "top": "0.00%",
+            "top": "20.00px",
             "bottom": "0.00%",
             "width": "100.0%",
             "height": "81.6%"
@@ -352,6 +429,29 @@
               "height": "STRETCH"
             }
           }
+        },
+        "1": {
+          "type": "WIDGET",
+          "setting": {
+            "style": {},
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "top": false,
+              "bottom": true,
+              "width": "AUTO",
+              "height": "AUTO"
+            }
+          },
+          "bbox": {
+            "left": "94.0%",
+            "right": "0.0%",
+            "top": "-0.0%",
+            "bottom": "97.9%",
+            "width": "18px",
+            "height": "2.1%"
+          },
+          "widgetId": "widget_92"
         }
       }
     },
@@ -437,7 +537,8 @@
           "widgetId": "widget_53",
           "setting": {
             "autoProps": {
-              "height": "AUTO"
+              "height": "AUTO",
+              "width": "CUSTOM"
             }
           }
         },
@@ -764,7 +865,7 @@
         "space": 0,
         "padding": {
           "number": [
-            10,
+            0,
             0,
             0,
             0
@@ -794,7 +895,7 @@
           "bbox": {
             "left": "0.0%",
             "right": "0.0%",
-            "top": "5.00px",
+            "top": "0.00px",
             "bottom": "0.00%",
             "width": "100.0%",
             "height": "79.8%"
@@ -891,44 +992,17 @@
           "bbox": {
             "left": "0.0%",
             "right": "0.0%",
-            "top": "21px",
+            "top": "0.00px",
             "bottom": "0.0%",
             "width": "100.0%",
             "height": "97.7%"
           },
           "widgetId": "widget_18",
           "isPending": false
-        },
-        "1": {
-          "type": "WIDGET",
-          "setting": {
-            "style": {},
-            "autoProps": {
-              "left": true,
-              "right": false,
-              "top": false,
-              "bottom": true,
-              "width": "AUTO",
-              "height": "AUTO"
-            },
-            "vCenter": false,
-            "hCenter": false
-          },
-          "bbox": {
-            "left": "84.0%",
-            "right": "0.00%",
-            "top": "0.0%",
-            "bottom": "95.7%",
-            "width": "15.9%",
-            "height": "22px"
-          },
-          "widgetId": "widget_71",
-          "isPending": false
         }
       },
       "order": [
-        "0",
-        "1"
+        "0"
       ]
     },
     "layout_29": {
@@ -936,7 +1010,6 @@
       "order": [
         "0",
         "1",
-        "2",
         "3",
         "4"
       ],
@@ -959,7 +1032,7 @@
           "bbox": {
             "left": "10.00px",
             "right": "10.00px",
-            "top": "22.00px",
+            "top": "10.00px",
             "bottom": "75.3%",
             "width": "0.00%",
             "height": "0.00%"
@@ -990,28 +1063,6 @@
             "hCenter": true
           },
           "isPending": true
-        },
-        "2": {
-          "type": "WIDGET",
-          "bbox": {
-            "left": "66.7%",
-            "right": "0.0%",
-            "top": "0.0%",
-            "bottom": "94.0%",
-            "width": "33.3%",
-            "height": "6.0%"
-          },
-          "widgetId": "widget_77",
-          "setting": {
-            "autoProps": {
-              "right": false,
-              "left": true,
-              "top": false,
-              "bottom": true,
-              "width": "AUTO",
-              "height": "AUTO"
-            }
-          }
         },
         "3": {
           "type": "WIDGET",
@@ -1144,122 +1195,6 @@
         "0",
         "1",
         "2"
-      ],
-      "setting": {
-        "lockDescendants": true
-      }
-    },
-    "layout_32": {
-      "type": "FIXED",
-      "content": {
-        "5": {
-          "type": "WIDGET",
-          "bbox": {
-            "left": "378px",
-            "top": "12.00px",
-            "width": "20.00px",
-            "height": "20.00px",
-            "right": "20px",
-            "bottom": "381px"
-          },
-          "widgetId": "widget_72",
-          "setting": {
-            "autoProps": {
-              "right": false,
-              "left": true,
-              "bottom": true,
-              "top": false
-            },
-            "order": 0,
-            "lockParent": false,
-            "lockLayout": false,
-            "vCenter": false,
-            "hCenter": false
-          },
-          "isPending": false
-        },
-        "7": {
-          "type": "WIDGET",
-          "setting": {
-            "style": {},
-            "vCenter": false,
-            "hCenter": false,
-            "autoProps": {
-              "width": "AUTO",
-              "left": false,
-              "right": true,
-              "top": false,
-              "bottom": true
-            },
-            "lockParent": false
-          },
-          "bbox": {
-            "left": "20px",
-            "right": "58.8%",
-            "top": "20.00px",
-            "bottom": "30.8%",
-            "width": "178px",
-            "height": "27px"
-          },
-          "widgetId": "widget_74",
-          "isPending": false
-        },
-        "8": {
-          "type": "WIDGET",
-          "setting": {
-            "style": {},
-            "autoProps": {
-              "right": false,
-              "left": true,
-              "width": "STRETCH",
-              "height": "STRETCH"
-            },
-            "vCenter": false,
-            "hCenter": false,
-            "lockParent": false
-          },
-          "bbox": {
-            "left": "20.00px",
-            "right": "20.00px",
-            "top": "50.00px",
-            "bottom": "14.1306%",
-            "width": "91.6318%",
-            "height": "15.0121%"
-          },
-          "widgetId": "widget_75",
-          "isPending": false
-        },
-        "9": {
-          "type": "WIDGET",
-          "setting": {
-            "style": {},
-            "vCenter": false,
-            "hCenter": false,
-            "autoProps": {
-              "bottom": false,
-              "top": true,
-              "right": false,
-              "left": true
-            },
-            "lockParent": false
-          },
-          "bbox": {
-            "left": "59.9912%",
-            "right": "30.00px",
-            "top": "84.6739%",
-            "bottom": "20.00px",
-            "width": "80px",
-            "height": "32.00px"
-          },
-          "widgetId": "widget_76",
-          "isPending": false
-        }
-      },
-      "order": [
-        "5",
-        "7",
-        "8",
-        "9"
       ],
       "setting": {
         "lockDescendants": true
@@ -1484,9 +1419,125 @@
           }
         }
       }
+    },
+    "layout_37": {
+      "type": "FIXED",
+      "setting": {
+        "lockDescendants": true
+      },
+      "content": {
+        "5": {
+          "type": "WIDGET",
+          "bbox": {
+            "left": "378px",
+            "top": "12.00px",
+            "width": "20.00px",
+            "height": "20.00px",
+            "right": "20px",
+            "bottom": "381px"
+          },
+          "widgetId": "widget_97",
+          "setting": {
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "bottom": true,
+              "top": false
+            },
+            "order": 0,
+            "lockParent": false,
+            "lockLayout": false,
+            "vCenter": false,
+            "hCenter": false
+          },
+          "isPending": false
+        },
+        "7": {
+          "type": "WIDGET",
+          "setting": {
+            "style": {},
+            "vCenter": false,
+            "hCenter": false,
+            "autoProps": {
+              "width": "AUTO",
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": true
+            },
+            "lockParent": false
+          },
+          "bbox": {
+            "left": "20px",
+            "right": "58.8%",
+            "top": "20.00px",
+            "bottom": "30.8%",
+            "width": "178px",
+            "height": "27px"
+          },
+          "widgetId": "widget_98",
+          "isPending": false
+        },
+        "8": {
+          "type": "WIDGET",
+          "setting": {
+            "style": {},
+            "autoProps": {
+              "right": false,
+              "left": true,
+              "width": "STRETCH",
+              "height": "STRETCH"
+            },
+            "vCenter": false,
+            "hCenter": false,
+            "lockParent": false
+          },
+          "bbox": {
+            "left": "20.00px",
+            "right": "20.00px",
+            "top": "50.00px",
+            "bottom": "14.1306%",
+            "width": "91.6318%",
+            "height": "15.0121%"
+          },
+          "widgetId": "widget_99",
+          "isPending": false
+        },
+        "9": {
+          "type": "WIDGET",
+          "setting": {
+            "style": {},
+            "vCenter": false,
+            "hCenter": false,
+            "autoProps": {
+              "bottom": false,
+              "top": true,
+              "right": false,
+              "left": true
+            },
+            "lockParent": false
+          },
+          "bbox": {
+            "left": "59.9912%",
+            "right": "30.00px",
+            "top": "84.6739%",
+            "bottom": "20.00px",
+            "width": "80px",
+            "height": "32.00px"
+          },
+          "widgetId": "widget_100",
+          "isPending": false
+        }
+      },
+      "order": [
+        "5",
+        "7",
+        "8",
+        "9"
+      ]
     }
   },
-  "exbVersion": "1.9.0",
+  "exbVersion": "1.10.0",
   "mainSizeMode": "LARGE",
   "theme": "themes/default/",
   "forBuilderAttributes": {
@@ -1502,7 +1553,7 @@
   "widgets": {
     "widget_1": {
       "uri": "widgets/common/image/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Image",
       "config": {
         "functionConfig": {
@@ -1546,7 +1597,7 @@
     },
     "widget_2": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text",
       "config": {
         "text": "<p><span style=\"font-size: 24px;\">Deep Sea Corals and Sponges﻿</span></p>",
@@ -1650,7 +1701,7 @@
     },
     "widget_7": {
       "uri": "widgets/layout/sidebar/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Sidebar 1",
       "config": {
         "direction": "HORIZONTAL",
@@ -1733,7 +1784,7 @@
     },
     "widget_8": {
       "uri": "widgets/layout/sidebar/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Sidebar 2",
       "config": {
         "direction": "HORIZONTAL",
@@ -1816,8 +1867,8 @@
     },
     "widget_9": {
       "uri": "widgets/layout/column/",
-      "version": "1.9.0",
-      "label": "Column 1",
+      "version": "1.10.0",
+      "label": "Upper Left Column",
       "config": {
         "space": {
           "distance": 0,
@@ -1856,8 +1907,8 @@
     },
     "widget_15": {
       "uri": "widgets/layout/column/",
-      "version": "1.9.0",
-      "label": "Column 2",
+      "version": "1.10.0",
+      "label": "Right Side Column",
       "config": {
         "space": {
           "distance": 0,
@@ -1892,19 +1943,9 @@
     },
     "widget_17": {
       "uri": "widgets/arcgis/arcgis-map/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Map",
       "config": {
-        "toolConifg": {
-          "canZoom": true,
-          "canHome": true,
-          "canSearch": true,
-          "canNavigation": true,
-          "canMeasure": false,
-          "canScaleBar": false,
-          "canSelect": false,
-          "canSelectState": false
-        },
         "isUseCustomMapState": true,
         "disablePopUp": false,
         "layoutIndex": 0,
@@ -1934,7 +1975,17 @@
           "rotation": 0,
           "viewType": "2d"
         },
-        "initialMapDataSourceID": "dataSource_1"
+        "initialMapDataSourceID": "dataSource_1",
+        "toolConfig": {
+          "canZoom": true,
+          "canHome": true,
+          "canSearch": true,
+          "canNavigation": true,
+          "canMeasure": false,
+          "canScaleBar": false,
+          "canSelect": false,
+          "canSelectState": false
+        }
       },
       "id": "widget_17",
       "layouts": {
@@ -1951,7 +2002,7 @@
     },
     "widget_18": {
       "uri": "widgets/arcgis/feature-info/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Feature Info",
       "config": {
         "limitGraphics": false,
@@ -2083,7 +2134,8 @@
             "expression/expr0",
             "expression/expr3",
             "expression/expr7"
-          ]
+          ],
+          "useFieldsInPopupInfo": true
         }
       ],
       "style": {
@@ -2099,7 +2151,7 @@
     },
     "widget_19": {
       "uri": "widgets/common/filter/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Filter",
       "config": {
         "groupByLayer": false,
@@ -2637,7 +2689,7 @@
     },
     "widget_20": {
       "uri": "widgets/layout/row/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Row 7",
       "config": {
         "space": 10,
@@ -2659,10 +2711,10 @@
     },
     "widget_21": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Application Version",
       "config": {
-        "text": "<p style=\"text-align: center;\"><span style=\"color: rgb(255, 255, 255);\">Application Version 2.4.0b</span></p>",
+        "text": "<p style=\"text-align: center;\"><span style=\"color: rgb(255, 255, 255);\">Application Version 2.5.0b</span></p>",
         "style": {
           "verticalAlign": "start",
           "wrap": true
@@ -2729,7 +2781,7 @@
     },
     "widget_31": {
       "uri": "widgets/common/button/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Button 2",
       "config": {
         "functionConfig": {
@@ -2770,7 +2822,7 @@
     },
     "widget_33": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 4",
       "config": {
         "text": "<p><strong style=\"font-size: 18px; color: var(--dark-800);\">﻿Export Data via ERDDAP</strong></p>",
@@ -2943,8 +2995,8 @@
     },
     "widget_49": {
       "uri": "widgets/layout/column/",
-      "version": "1.9.0",
-      "label": "Column 3",
+      "version": "1.10.0",
+      "label": "Lower Left Column",
       "config": {
         "space": {
           "distance": 0,
@@ -2953,7 +3005,7 @@
         "style": {
           "padding": {
             "number": [
-              10,
+              0,
               0,
               0,
               0
@@ -2982,8 +3034,8 @@
     },
     "widget_50": {
       "uri": "widgets/common/navigator/",
-      "version": "1.9.0",
-      "label": "Views Navigation",
+      "version": "1.10.0",
+      "label": "Left Side Views Navigation",
       "config": {
         "data": {
           "type": "AUTO",
@@ -3066,8 +3118,8 @@
     },
     "widget_51": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
-      "label": "Text 5",
+      "version": "1.10.0",
+      "label": "Filters Label",
       "config": {
         "text": "<p style=\"text-align: center;\"><strong style=\"font-size: 16px;\">Filters﻿</strong></p>",
         "style": {
@@ -3075,12 +3127,18 @@
           "wrap": true
         }
       },
-      "id": "widget_51"
+      "id": "widget_51",
+      "style": {
+        "background": {
+          "color": null,
+          "fillType": "fill"
+        }
+      }
     },
     "widget_53": {
       "uri": "widgets/common/navigator/",
-      "version": "1.9.0",
-      "label": "Views Navigation 2",
+      "version": "1.10.0",
+      "label": "Right Side Views Navigation",
       "config": {
         "data": {
           "type": "AUTO",
@@ -3227,7 +3285,7 @@
     },
     "widget_58": {
       "uri": "widgets/common/image/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Image 3",
       "config": {
         "functionConfig": {
@@ -3257,7 +3315,7 @@
     },
     "widget_59": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 7",
       "config": {
         "text": "",
@@ -3271,7 +3329,7 @@
     },
     "widget_60": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 8",
       "config": {
         "text": "<p><span style=\"color: var(--dark-800);\">﻿</span><span style=\"color: rgb(24, 24, 24);\">﻿Welcome to the pre-release version of NOAA's Deep-sea Corals and Sponges data discovery tool. This application is under active development and your feedback is welcome.</span></p>",
@@ -3315,130 +3373,9 @@
         "widget_17"
       ]
     },
-    "widget_71": {
-      "uri": "widgets/info-window-button/",
-      "version": "1.0.0",
-      "label": "Info Window Button",
-      "config": {
-        "dialogId": "dialog_4"
-      },
-      "id": "widget_71"
-    },
-    "widget_72": {
-      "uri": "widgets/common/button/",
-      "version": "1.9.0",
-      "label": "Button 5",
-      "config": {
-        "functionConfig": {
-          "text": "",
-          "textExpression": null,
-          "icon": {
-            "data": "<svg viewBox=\"0 0 14 14\" xmlns=\"http://www.w3.org/2000/svg\"><g fill-rule=\"nonzero\" fill=\"none\"><path d=\"M7.745 7l4.1 4.1a.527.527 0 01-.745.746L7 7.746l-4.1 4.1a.527.527 0 01-.746-.746l4.1-4.1-4.1-4.1a.527.527 0 01.746-.746l4.1 4.1 4.1-4.1a.527.527 0 01.746.746L7.746 7z\" fill=\"#000\"></path><path d=\"M1 1h12v12H1z\"></path></g></svg>",
-            "position": "LEFT"
-          },
-          "linkParam": {
-            "linkType": "PAGE",
-            "value": "current_page",
-            "openType": "_self"
-          }
-        },
-        "styleConfig": {
-          "useCustom": false,
-          "customStyle": {
-            "regular": {
-              "iconProps": {
-                "color": "#181818",
-                "size": 14
-              }
-            },
-            "hover": {
-              "iconProps": {
-                "color": "#076fe5",
-                "size": 14
-              }
-            }
-          },
-          "themeStyle": {
-            "quickStyleType": "tertiary"
-          }
-        }
-      },
-      "id": "widget_72"
-    },
-    "widget_74": {
-      "uri": "widgets/common/text/",
-      "version": "1.9.0",
-      "label": "Text 11",
-      "config": {
-        "text": "<p><strong style=\"color: var(--dark-800); font-size: 14px;\">Details / Summary Panel</strong></p>",
-        "style": {
-          "verticalAlign": "start",
-          "wrap": true
-        }
-      },
-      "id": "widget_74"
-    },
-    "widget_75": {
-      "uri": "widgets/common/text/",
-      "version": "1.9.0",
-      "label": "Text 12",
-      "config": {
-        "text": "<p><span style=\"color: var(--dark-800);\">The panel on the right side of the map has two tabs, \"Detail\" and \"Summary\". The Detail tab allows you to page through every available record given the current map extent and any filters that have been applied. You can toggle between the tabs by clicking on the titles \"Detail\" and \"Summary\" respectively.  The Summary tab displays data aggregated by fixed hexagonal areas, aka \"hexbins\".</span></p><p><br></p><p><span style=\"color: var(--dark-800);\">If you select a point on the map, the Detail tab will display the corresponding record (note that this may take a few seconds). Switching to the Summary tab will show summary information for the hexbin containing the selected record.</span></p><p><br></p><p><span style=\"color: var(--dark-800);\">If you click on a location which is covered by a hexbin but does not intersect a point, the Summary tab will automatically be selected. If you click on a location not covered by a hexbin, no summary information will be displayed but you will still be able to page through active records in the Detail tab.</span></p>",
-        "style": {
-          "verticalAlign": "start",
-          "wrap": true
-        }
-      },
-      "id": "widget_75"
-    },
-    "widget_76": {
-      "uri": "widgets/common/button/",
-      "version": "1.9.0",
-      "label": "Button 6",
-      "config": {
-        "functionConfig": {
-          "text": "OK",
-          "textExpression": null,
-          "linkParam": {
-            "linkType": "PAGE",
-            "value": "current_page",
-            "openType": "_self"
-          }
-        },
-        "styleConfig": {
-          "useCustom": false,
-          "customStyle": {
-            "regular": {
-              "iconProps": {
-                "color": "#181818",
-                "size": 14
-              }
-            },
-            "hover": {
-              "iconProps": {
-                "size": 14
-              }
-            }
-          },
-          "themeStyle": {
-            "quickStyleType": "default"
-          }
-        }
-      },
-      "id": "widget_76"
-    },
-    "widget_77": {
-      "uri": "widgets/info-window-button/",
-      "version": "1.0.0",
-      "label": "Info Window Button 2",
-      "config": {
-        "dialogId": "dialog_4"
-      },
-      "id": "widget_77"
-    },
     "widget_78": {
       "uri": "widgets/common/button/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Button 7",
       "config": {
         "functionConfig": {
@@ -3479,7 +3416,7 @@
     },
     "widget_79": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 13",
       "config": {
         "text": "<p><strong style=\"font-size: 14px; color: var(--dark-800);\">Filters</strong></p>",
@@ -3492,7 +3429,7 @@
     },
     "widget_80": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 14",
       "config": {
         "text": "<p>Filters for limiting the displayed records are located in the panel left of the map. The \"Scientific Name\" filter allows you to type in the scientific name of interest. It will \"autocomplete', displaying all options beginning with the characters you typed.</p><p><br></p><p>Other filters are available in the \"Basic\", \"Taxon\", and \"Models\" tabs below. The \"Taxon\" filters are intended to operate from the most general to the most specific and only offer choices pertinent to the previous selections.</p><p><br></p><p>Unlike the other two tabs, the \"Models\" tab does not filter the sample records, but instead filters the display of model output predicting the location of specified species.</p><p><br></p><p>Multiple filters can be applied simultaneously and note that is it possible to have a combination of filters which do not match any records.</p>",
@@ -3505,7 +3442,7 @@
     },
     "widget_81": {
       "uri": "widgets/common/button/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Button 8",
       "config": {
         "functionConfig": {
@@ -3541,7 +3478,7 @@
     },
     "widget_82": {
       "uri": "widgets/common/controller/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Widget Controller",
       "config": {
         "behavior": {
@@ -3645,7 +3582,7 @@
     },
     "widget_87": {
       "uri": "widgets/common/image/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Image 4",
       "config": {
         "functionConfig": {
@@ -3675,7 +3612,7 @@
     },
     "widget_89": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 16",
       "config": {
         "text": "<p style=\"text-align: right;\"><strong style=\"font-size: 14px;\">Lowest Density</strong></p>",
@@ -3688,7 +3625,7 @@
     },
     "widget_90": {
       "uri": "widgets/common/text/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Text 17",
       "config": {
         "text": "<p><strong style=\"font-size: 14px;\">Highest Density</strong></p>",
@@ -3701,7 +3638,7 @@
     },
     "widget_91": {
       "uri": "widgets/layout/row/",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "label": "Row 8",
       "config": {
         "space": 10,
@@ -3720,6 +3657,263 @@
           "LARGE": "layout_36"
         }
       }
+    },
+    "widget_92": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "Right Panel Help Button",
+      "config": {
+        "functionConfig": {
+          "icon": {
+            "data": "<svg viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6.5 7.5A.5.5 0 0 1 7 7h1.5v4.5h1a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h1V8H7a.5.5 0 0 1-.5-.5Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z\" fill=\"#000\"></path></svg>",
+            "position": "LEFT"
+          },
+          "text": "",
+          "textExpression": null,
+          "toolTip": "show help information",
+          "toolTipExpression": null,
+          "linkParam": {
+            "linkType": "DIALOG",
+            "value": "dialog_6"
+          }
+        },
+        "styleConfig": {
+          "themeStyle": {
+            "quickStyleType": "default"
+          },
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#050505"
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "color": "#050505"
+              }
+            }
+          }
+        }
+      },
+      "id": "widget_92"
+    },
+    "widget_94": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "Filters Help Button",
+      "config": {
+        "functionConfig": {
+          "icon": {
+            "data": "<svg viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6.5 7.5A.5.5 0 0 1 7 7h1.5v4.5h1a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h1V8H7a.5.5 0 0 1-.5-.5Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z\" fill=\"#000\"></path></svg>",
+            "position": "LEFT"
+          },
+          "toolTip": "show help information",
+          "toolTipExpression": null,
+          "text": "",
+          "textExpression": null,
+          "linkParam": {
+            "linkType": "DIALOG",
+            "value": "dialog_5"
+          }
+        },
+        "styleConfig": {
+          "themeStyle": {
+            "quickStyleType": "default"
+          },
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#050505"
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "color": "#050505"
+              }
+            }
+          }
+        }
+      },
+      "id": "widget_94"
+    },
+    "widget_95": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "Return Button",
+      "config": {
+        "functionConfig": {
+          "text": "Return",
+          "textExpression": null,
+          "toolTip": "go back to deep sea coral website data overview page",
+          "toolTipExpression": null,
+          "linkParam": {
+            "linkType": "WEB_ADDRESS",
+            "openType": "_blank",
+            "value": "https://deepseacoraldata.noaa.gov/data",
+            "expression": null
+          }
+        },
+        "styleConfig": {
+          "themeStyle": {
+            "quickStyleType": "primary"
+          },
+          "useCustom": false,
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#fff",
+                "size": 14
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "size": 14
+              }
+            }
+          }
+        }
+      },
+      "id": "widget_95"
+    },
+    "widget_96": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "ERDDAP Button",
+      "config": {
+        "functionConfig": {
+          "text": "Download",
+          "textExpression": null,
+          "toolTip": "Download data via ERDDAP",
+          "toolTipExpression": null,
+          "linkParam": {
+            "linkType": "DIALOG",
+            "value": "dialog_1"
+          }
+        },
+        "styleConfig": {
+          "themeStyle": {
+            "quickStyleType": "primary"
+          },
+          "useCustom": false,
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#fff",
+                "size": 14
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "size": 14
+              }
+            }
+          }
+        }
+      },
+      "id": "widget_96"
+    },
+    "widget_97": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "Button 9",
+      "config": {
+        "functionConfig": {
+          "text": "",
+          "textExpression": null,
+          "icon": {
+            "data": "<svg viewBox=\"0 0 14 14\" xmlns=\"http://www.w3.org/2000/svg\"><g fill-rule=\"nonzero\" fill=\"none\"><path d=\"M7.745 7l4.1 4.1a.527.527 0 01-.745.746L7 7.746l-4.1 4.1a.527.527 0 01-.746-.746l4.1-4.1-4.1-4.1a.527.527 0 01.746-.746l4.1 4.1 4.1-4.1a.527.527 0 01.746.746L7.746 7z\" fill=\"#000\"></path><path d=\"M1 1h12v12H1z\"></path></g></svg>",
+            "position": "LEFT"
+          },
+          "linkParam": {
+            "linkType": "PAGE",
+            "value": "current_page",
+            "openType": "_self"
+          }
+        },
+        "styleConfig": {
+          "useCustom": false,
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#181818",
+                "size": 14
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "color": "#076fe5",
+                "size": 14
+              }
+            }
+          },
+          "themeStyle": {
+            "quickStyleType": "tertiary"
+          }
+        }
+      },
+      "id": "widget_97"
+    },
+    "widget_98": {
+      "uri": "widgets/common/text/",
+      "version": "1.10.0",
+      "label": "Text 18",
+      "config": {
+        "text": "<p><strong style=\"color: var(--dark-800); font-size: 14px;\">Details / Summary Panel</strong></p>",
+        "style": {
+          "verticalAlign": "start",
+          "wrap": true
+        }
+      },
+      "id": "widget_98"
+    },
+    "widget_99": {
+      "uri": "widgets/common/text/",
+      "version": "1.10.0",
+      "label": "Text 19",
+      "config": {
+        "text": "<p><span style=\"color: var(--dark-800);\">The panel on the right side of the map has two tabs, \"Detail\" and \"Summary\". The Detail tab allows you to page through every available record given the current map extent and any filters that have been applied. You can toggle between the tabs by clicking on the titles \"Detail\" and \"Summary\" respectively.  The Summary tab displays data aggregated by fixed hexagonal areas, aka \"hexbins\".</span></p><p><br></p><p><span style=\"color: var(--dark-800);\">If you select a point on the map, the Detail tab will display the corresponding record (note that this may take a few seconds). Switching to the Summary tab will show summary information for the hexbin containing the selected record.</span></p><p><br></p><p><span style=\"color: var(--dark-800);\">If you click on a location which is covered by a hexbin but does not intersect a point, the Summary tab will automatically be selected. If you click on a location not covered by a hexbin, no summary information will be displayed but you will still be able to page through active records in the Detail tab.</span></p>",
+        "style": {
+          "verticalAlign": "start",
+          "wrap": true
+        }
+      },
+      "id": "widget_99"
+    },
+    "widget_100": {
+      "uri": "widgets/common/button/",
+      "version": "1.10.0",
+      "label": "Button 10",
+      "config": {
+        "functionConfig": {
+          "text": "OK",
+          "textExpression": null,
+          "linkParam": {
+            "linkType": "PAGE",
+            "value": "current_page",
+            "openType": "_self"
+          }
+        },
+        "styleConfig": {
+          "useCustom": false,
+          "customStyle": {
+            "regular": {
+              "iconProps": {
+                "color": "#181818",
+                "size": 14
+              }
+            },
+            "hover": {
+              "iconProps": {
+                "size": 14
+              }
+            }
+          },
+          "themeStyle": {
+            "quickStyleType": "default"
+          }
+        }
+      },
+      "id": "widget_100"
     }
   },
   "widgetsManifest": {},
@@ -3855,32 +4049,6 @@
       "isSplash": true,
       "label": "Splash Screen"
     },
-    "dialog_4": {
-      "id": "dialog_4",
-      "mode": "FIXED",
-      "sizeMode": {
-        "LARGE": {
-          "position": "CENTER",
-          "width": "480px",
-          "height": "432px"
-        }
-      },
-      "dialogBackground": {
-        "color": "var(--light)",
-        "fillType": "fit",
-        "image": {
-          "url": ""
-        }
-      },
-      "overlayColor": "var(--dark-900)",
-      "layout": {
-        "LARGE": "layout_32"
-      },
-      "index": 2,
-      "isSplash": false,
-      "label": "Right Panel Help Dialog",
-      "closeWhenClickOverlay": true
-    },
     "dialog_5": {
       "id": "dialog_5",
       "mode": "FIXED",
@@ -3902,9 +4070,35 @@
       "layout": {
         "LARGE": "layout_33"
       },
-      "index": 3,
+      "index": 2,
       "isSplash": false,
       "label": "Filters Panel Help Dialog",
+      "closeWhenClickOverlay": true
+    },
+    "dialog_6": {
+      "id": "dialog_6",
+      "mode": "FIXED",
+      "sizeMode": {
+        "LARGE": {
+          "position": "CENTER",
+          "width": "480px",
+          "height": "432px"
+        }
+      },
+      "dialogBackground": {
+        "color": "var(--light)",
+        "fillType": "fit",
+        "image": {
+          "url": ""
+        }
+      },
+      "overlayColor": "var(--dark-900)",
+      "layout": {
+        "LARGE": "layout_37"
+      },
+      "index": 3,
+      "isSplash": false,
+      "label": "Right Panel Help Dialog",
       "closeWhenClickOverlay": true
     }
   },
@@ -4242,7 +4436,7 @@
       "link": "https://www.noaa.gov"
     }
   },
-  "originExbVersion": "1.9.0",
+  "originExbVersion": "1.10.0",
   "pageStructure": [
     {
       "page_0": []
@@ -4257,7 +4451,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1676418221754,
+  "timestamp": 1678147258000,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
