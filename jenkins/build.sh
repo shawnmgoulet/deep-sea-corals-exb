@@ -8,16 +8,16 @@
 export BUILD_NUMBER=
 
 # install Node.js
-NODE_VERSION=node-v16.19.0-linux-x64
+NODE_VERSION=node-v16.19.1-linux-x64
 DOWNLOAD_URL=https://nodejs.org/dist/latest-v16.x/${NODE_VERSION}.tar.gz
 wget --quiet -O - $DOWNLOAD_URL | tar xz
 export PATH="$WORKSPACE/$NODE_VERSION/bin":$PATH
 echo installed `node --version`
 
 # download ArcGIS Experience Builder Developer Edition
-EXB_VERSION=1.9
+EXB_VERSION=1.10
 # ARCGIS_LIB_DOWNLOADER_USERNAME, ARCGIS_LIB_DOWNLOADER_PASSWORD env vars set via Jenkins credentials
-npx arcgis-lib-downloader -p arcgis-experience-builder -v $EXB_VERSION
+npx arcgis-lib-downloader@latest -p arcgis-experience-builder -v $EXB_VERSION
 # unzip not on CI-CMG Jenkins instance by default. "--quiet" option not working
 apt-get --quiet install unzip
 unzip -q arcgis-experience-builder-${EXB_VERSION}.zip -d arcgis-experience-builder-${EXB_VERSION}
