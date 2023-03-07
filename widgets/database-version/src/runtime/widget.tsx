@@ -2,6 +2,7 @@
 import { AllWidgetProps, jsx } from 'jimu-core'
 import { useState, useEffect } from 'react'
 import { IMConfig } from '../config'
+import './widget.css'
 
 export default function (props: AllWidgetProps<IMConfig>) {
   const [databaseVersion, setDatabaseVersion] = useState('not available')
@@ -27,7 +28,7 @@ export default function (props: AllWidgetProps<IMConfig>) {
       })
   }, [props.config.configUrl])
   return (
-    <div className="widget-demo jimu-widget m-2" style={{ fontFamily: 'Avenir Next', fontSize: '13px', color: 'white', verticalAlign: 'middle' }}>
+    <div className="database-version align-text-middle jimu-widget m-4">
       <span>Database Version: {databaseVersion}</span>
     </div>
   )
