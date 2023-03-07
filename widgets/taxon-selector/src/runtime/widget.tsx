@@ -225,7 +225,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   }
 
   return (
-    <div className="" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+    <div className="jimu-widget" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
       <div>
         <DataSourceComponent
             useDataSource={props.useDataSources?.[0]}
@@ -242,6 +242,9 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         onChange={phylumSelectHandler}
         placeholder="Select a Phylum..."
         style={{ padding: '10px', width: 200 }}
+        ariaLabel="Select a Phylum"
+        menuRole="menu"
+        menuItemCheckMode="singleCheck"
         disabled={!phylumList.length}
       >
         {phylumList?.map(item => <Option value={item}>{item}</Option>)}
@@ -252,6 +255,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         onChange={classSelectHandler}
         placeholder="Select a Class..."
         style={{ padding: '10px', width: 200 }}
+        menuRole="menu"
         disabled={!selectedPhylum}
       >
         {classList.map(item => <Option value={item}>{item}</Option>)}
@@ -262,6 +266,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         onChange={orderSelectHandler}
         placeholder="Select an Order..."
         style={{ paddingLeft: '10px', paddingBottom: '10px', width: 200 }}
+        menuRole="menu"
         disabled={!selectedClass}
       >
         {orderList.map(item => <Option value={item}>{item}</Option>)}
@@ -272,6 +277,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         onChange={familySelectHandler}
         placeholder="Select a Family..."
         style={{ paddingLeft: '10px', paddingBottom: '10px', width: 200 }}
+        menuRole="menu"
         disabled={!selectedOrder}
       >
         {familyList.map(item => <Option value={item}>{item}</Option>)}
@@ -282,6 +288,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
         onChange={genusSelectHandler}
         placeholder="Select a Genus..."
         style={{ paddingLeft: '10px', paddingBottom: '10px', width: 200 }}
+        menuRole="menu"
         disabled={!selectedFamily}
       >
         {genusList.map(item => <Option value={item}>{item}</Option>)}

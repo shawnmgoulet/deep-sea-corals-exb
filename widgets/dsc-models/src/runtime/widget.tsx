@@ -137,7 +137,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
       </div>
 
       <div style={{ width: '90%', padding: '10px' }}>
-        <Checkbox checked={checked} onChange={checkboxHandler} /> Hide Hexbins
+        <Checkbox checked={checked} onChange={checkboxHandler} aria-label="Hide Hexbins"/> Hide Hexbins
       </div>
 
       <div style={{ width: '90%' }}>
