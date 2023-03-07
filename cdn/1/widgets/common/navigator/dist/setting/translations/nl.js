@@ -1,1 +1,1 @@
-define({_widgetLabel:"Navigatieweergaven",tabStyle:"Tabbladstijl",navBtnStyle:"Navigatieknopstijl"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Navigatieweergaven",tabStyle:"Tabbladstijl",navBtnStyle:"Navigatieknopstijl",stepTips:"Werkt alleen wanneer een transitieanimatie is ingesteld voor de overeenkomstige Section-widget."})}}}));

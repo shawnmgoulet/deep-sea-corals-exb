@@ -1,1 +1,1 @@
-define({_widgetLabel:"Objektoplysninger",noDeataMessageDefaultText:"Ingen data fundet.",featureNumbers:"{index} af {count}",featureInfoDataActionLabel:"{layer} objektinfovalg"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Objektoplysninger",noDeataMessageDefaultText:"Ingen data fundet.",featureNumbers:"{index} af {count}",featureInfoDataActionLabel:"{layer} objektinfovalg"})}}}));

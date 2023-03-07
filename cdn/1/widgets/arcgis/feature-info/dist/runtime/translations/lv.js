@@ -1,1 +1,1 @@
-define({_widgetLabel:"Informācija par elementu",noDeataMessageDefaultText:"Dati nav atrasti.",featureNumbers:"{index} no {count}",featureInfoDataActionLabel:"{layer} elementa informācijas atlase"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Informācija par elementu",noDeataMessageDefaultText:"Dati nav atrasti.",featureNumbers:"{index} no {count}",featureInfoDataActionLabel:"{layer} elementa informācijas atlase"})}}}));

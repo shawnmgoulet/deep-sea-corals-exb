@@ -1,1 +1,1 @@
-define({_widgetLabel:"Geoobjektinfo",noDeataMessageDefaultText:"Finner ingen data.",featureNumbers:"{index} av {count}",featureInfoDataActionLabel:"{layer} geoobjektinformasjonsutvalg"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Geoobjektinfo",noDeataMessageDefaultText:"Finner ingen data.",featureNumbers:"{index} av {count}",featureInfoDataActionLabel:"{layer} geoobjektinformasjonsutvalg"})}}}));

@@ -1,11 +1,3 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 System.register(["jimu-core","jimu-core/react","jimu-arcgis"], function(__WEBPACK_DYNAMIC_EXPORT__, __system_context__) {
 	var __WEBPACK_EXTERNAL_MODULE_jimu_core__ = {};
 	var __WEBPACK_EXTERNAL_MODULE_react__ = {};
@@ -35,27 +27,6 @@ System.register(["jimu-core","jimu-core/react","jimu-arcgis"], function(__WEBPAC
 			__WEBPACK_DYNAMIC_EXPORT__(
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./jimu-core/lib/set-public-path.ts":
-/*!******************************************!*\
-  !*** ./jimu-core/lib/set-public-path.ts ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-eval("/**\n * Webpack will replace __webpack_public_path__ with __webpack_require__.p to set the public path dynamically.\n * The reason why we can't set the publicPath in webpack config is: we change the publicPath when download.\n * */\n// eslint-disable-next-line\n// @ts-ignore\n__webpack_require__.p = window.jimuConfig.baseUrl;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9qaW11LWNvcmUvbGliL3NldC1wdWJsaWMtcGF0aC50cy5qcyIsIm1hcHBpbmdzIjoiQUFBQTs7O0FBR0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9leGItY2xpZW50Ly4vamltdS1jb3JlL2xpYi9zZXQtcHVibGljLXBhdGgudHM/OGQyYyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcclxuICogV2VicGFjayB3aWxsIHJlcGxhY2UgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gd2l0aCBfX3dlYnBhY2tfcmVxdWlyZV9fLnAgdG8gc2V0IHRoZSBwdWJsaWMgcGF0aCBkeW5hbWljYWxseS5cclxuICogVGhlIHJlYXNvbiB3aHkgd2UgY2FuJ3Qgc2V0IHRoZSBwdWJsaWNQYXRoIGluIHdlYnBhY2sgY29uZmlnIGlzOiB3ZSBjaGFuZ2UgdGhlIHB1YmxpY1BhdGggd2hlbiBkb3dubG9hZC5cclxuICogKi9cclxuLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lXHJcbi8vIEB0cy1pZ25vcmVcclxuX193ZWJwYWNrX3B1YmxpY19wYXRoX18gPSB3aW5kb3cuamltdUNvbmZpZy5iYXNlVXJsXHJcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./jimu-core/lib/set-public-path.ts\n");
-
-/***/ }),
-
-/***/ "./your-extensions/widgets/map-update-status/src/runtime/widget.tsx":
-/*!**************************************************************************!*\
-  !*** ./your-extensions/widgets/map-update-status/src/runtime/widget.tsx ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Widget)\n/* harmony export */ });\n/* harmony import */ var jimu_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jimu-core */ \"jimu-core\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var jimu_arcgis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jimu-arcgis */ \"jimu-arcgis\");\n/** @jsx jsx */\n\n\n\nfunction Widget(props) {\n    var _a;\n    const [view, setView] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [isUpdating, setIsUpdating] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);\n    const timeoutId = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);\n    const timeoutForMapUpdate = 30000;\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {\n        if (!view) {\n            return;\n        }\n        function setMapUpdateTimeout() {\n            timeoutId.current = setTimeout(overrideMapStatus, timeoutForMapUpdate);\n        }\n        function overrideMapStatus() {\n            console.warn(`forcing MapView 'updating' status to 'false' after waiting for ${timeoutForMapUpdate / 1000} seconds`);\n            setIsUpdating(false);\n        }\n        const mapView = view.view;\n        const updatingWatchHandle = mapView.watch('updating', (newStatus) => {\n            // don't allow isUpdating to remain true for > 30 secs\n            if (newStatus) {\n                setMapUpdateTimeout();\n            }\n            else {\n                clearTimeout(timeoutId.current);\n            }\n            setIsUpdating(newStatus);\n        });\n        return () => {\n            // remove at time componment is destroyed\n            if (updatingWatchHandle) {\n                updatingWatchHandle.remove();\n            }\n            if (timeoutId.current) {\n                clearTimeout(timeoutId.current);\n            }\n        };\n    }, [view]);\n    // only called when widget first loaded\n    const activeViewChangeHandler = (jmv) => {\n        if (!jmv) {\n            throw new Error('no MapView');\n        }\n        setView(jmv);\n    };\n    return ((0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(\"div\", { className: \"widget-use-map-view\", style: { width: '100%', height: '100%', overflow: 'hidden' } },\n        (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(jimu_arcgis__WEBPACK_IMPORTED_MODULE_2__.JimuMapViewComponent, { useMapWidgetId: (_a = props.useMapWidgetIds) === null || _a === void 0 ? void 0 : _a[0], onActiveViewChange: activeViewChangeHandler }),\n        (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(\"div\", { style: { overflowY: 'auto', height: '100%', paddingLeft: '5px' } },\n            (!view)\n                ? (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(\"div\", null,\n                    (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(\"span\", null, \"MapView must be configured\"))\n                : '',\n            (!isUpdating)\n                ? ''\n                : (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(\"span\", { style: { fontSize: 'medium', color: 'red' } }, \"map is updating...\"))));\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi95b3VyLWV4dGVuc2lvbnMvd2lkZ2V0cy9tYXAtdXBkYXRlLXN0YXR1cy9zcmMvcnVudGltZS93aWRnZXQudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUlBOztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUFBO0FBQUE7QUFFQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBRUE7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBRUE7QUFFQTtBQUtBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFFQTtBQUNBO0FBQ0E7QUFLQSIsInNvdXJjZXMiOlsid2VicGFjazovL2V4Yi1jbGllbnQvLi95b3VyLWV4dGVuc2lvbnMvd2lkZ2V0cy9tYXAtdXBkYXRlLXN0YXR1cy9zcmMvcnVudGltZS93aWRnZXQudHN4PzFlNmIiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBBbGxXaWRnZXRQcm9wcywganN4IH0gZnJvbSAnamltdS1jb3JlJ1xuaW1wb3J0IHsgdXNlU3RhdGUsIHVzZUVmZmVjdCwgdXNlUmVmIH0gZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBKaW11TWFwVmlldywgSmltdU1hcFZpZXdDb21wb25lbnQgfSBmcm9tICdqaW11LWFyY2dpcydcbi8vIGltcG9ydCB7IGRlZmF1bHRNZXNzYWdlcyBhcyBqaW11VUlNZXNzYWdlcyB9IGZyb20gJ2ppbXUtdWknXG5pbXBvcnQgeyBJTUNvbmZpZyB9IGZyb20gJy4uL2NvbmZpZydcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gV2lkZ2V0IChwcm9wczogQWxsV2lkZ2V0UHJvcHM8SU1Db25maWc+KSB7XG4gIGNvbnN0IFt2aWV3LCBzZXRWaWV3XSA9IHVzZVN0YXRlPEppbXVNYXBWaWV3PihudWxsKVxuICBjb25zdCBbaXNVcGRhdGluZywgc2V0SXNVcGRhdGluZ10gPSB1c2VTdGF0ZShmYWxzZSlcbiAgY29uc3QgdGltZW91dElkID0gdXNlUmVmKG51bGwpXG4gIGNvbnN0IHRpbWVvdXRGb3JNYXBVcGRhdGUgPSAzMDAwMFxuXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgaWYgKCF2aWV3KSB7IHJldHVybiB9XG5cbiAgICBmdW5jdGlvbiBzZXRNYXBVcGRhdGVUaW1lb3V0ICgpIHtcbiAgICAgIHRpbWVvdXRJZC5jdXJyZW50ID0gc2V0VGltZW91dChvdmVycmlkZU1hcFN0YXR1cywgdGltZW91dEZvck1hcFVwZGF0ZSlcbiAgICB9XG5cbiAgICBmdW5jdGlvbiBvdmVycmlkZU1hcFN0YXR1cyAoKSB7XG4gICAgICBjb25zb2xlLndhcm4oYGZvcmNpbmcgTWFwVmlldyAndXBkYXRpbmcnIHN0YXR1cyB0byAnZmFsc2UnIGFmdGVyIHdhaXRpbmcgZm9yICR7dGltZW91dEZvck1hcFVwZGF0ZSAvIDEwMDB9IHNlY29uZHNgKVxuICAgICAgc2V0SXNVcGRhdGluZyhmYWxzZSlcbiAgICB9XG5cbiAgICBjb25zdCBtYXBWaWV3ID0gdmlldy52aWV3XG5cbiAgICBjb25zdCB1cGRhdGluZ1dhdGNoSGFuZGxlID0gbWFwVmlldy53YXRjaChcbiAgICAgICd1cGRhdGluZycsXG4gICAgICAobmV3U3RhdHVzKSA9PiB7XG4gICAgICAgIC8vIGRvbid0IGFsbG93IGlzVXBkYXRpbmcgdG8gcmVtYWluIHRydWUgZm9yID4gMzAgc2Vjc1xuICAgICAgICBpZiAobmV3U3RhdHVzKSB7XG4gICAgICAgICAgc2V0TWFwVXBkYXRlVGltZW91dCgpXG4gICAgICAgIH0gZWxzZSB7XG4gICAgICAgICAgY2xlYXJUaW1lb3V0KHRpbWVvdXRJZC5jdXJyZW50KVxuICAgICAgICB9XG4gICAgICAgIHNldElzVXBkYXRpbmcobmV3U3RhdHVzKVxuICAgICAgfSlcblxuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICAvLyByZW1vdmUgYXQgdGltZSBjb21wb25tZW50IGlzIGRlc3Ryb3llZFxuICAgICAgaWYgKHVwZGF0aW5nV2F0Y2hIYW5kbGUpIHtcbiAgICAgICAgdXBkYXRpbmdXYXRjaEhhbmRsZS5yZW1vdmUoKVxuICAgICAgfVxuICAgICAgaWYgKHRpbWVvdXRJZC5jdXJyZW50KSB7IGNsZWFyVGltZW91dCh0aW1lb3V0SWQuY3VycmVudCkgfVxuICAgIH1cbiAgfSwgW3ZpZXddKVxuXG4gIC8vIG9ubHkgY2FsbGVkIHdoZW4gd2lkZ2V0IGZpcnN0IGxvYWRlZFxuICBjb25zdCBhY3RpdmVWaWV3Q2hhbmdlSGFuZGxlciA9IChqbXY6IEppbXVNYXBWaWV3KSA9PiB7XG4gICAgaWYgKCFqbXYpIHsgdGhyb3cgbmV3IEVycm9yKCdubyBNYXBWaWV3JykgfVxuICAgIHNldFZpZXcoam12KVxuICB9XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cIndpZGdldC11c2UtbWFwLXZpZXdcIiBzdHlsZT17eyB3aWR0aDogJzEwMCUnLCBoZWlnaHQ6ICcxMDAlJywgb3ZlcmZsb3c6ICdoaWRkZW4nIH19PlxuICAgICAgPEppbXVNYXBWaWV3Q29tcG9uZW50XG4gICAgICAgIHVzZU1hcFdpZGdldElkPXtwcm9wcy51c2VNYXBXaWRnZXRJZHM/LlswXX1cbiAgICAgICAgb25BY3RpdmVWaWV3Q2hhbmdlPXthY3RpdmVWaWV3Q2hhbmdlSGFuZGxlcn0+XG4gICAgICA8L0ppbXVNYXBWaWV3Q29tcG9uZW50PlxuXG4gICAgICA8ZGl2IHN0eWxlPXt7IG92ZXJmbG93WTogJ2F1dG8nLCBoZWlnaHQ6ICcxMDAlJywgcGFkZGluZ0xlZnQ6ICc1cHgnIH19PlxuICAgICAgICB7KCF2aWV3KVxuICAgICAgICAgID8gPGRpdj5cbiAgICAgICAgICAgICAgPHNwYW4+TWFwVmlldyBtdXN0IGJlIGNvbmZpZ3VyZWQ8L3NwYW4+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA6ICcnXG4gICAgICAgIH1cbiAgICAgICAgeyghaXNVcGRhdGluZylcbiAgICAgICAgICA/ICcnXG4gICAgICAgICAgOiA8c3BhbiBzdHlsZT17eyBmb250U2l6ZTogJ21lZGl1bScsIGNvbG9yOiAncmVkJyB9fT5tYXAgaXMgdXBkYXRpbmcuLi48L3NwYW4+XG4gICAgICAgIH1cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICApXG59XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./your-extensions/widgets/map-update-status/src/runtime/widget.tsx\n");
-
-/***/ }),
 
 /***/ "jimu-arcgis":
 /*!******************************!*\
@@ -151,13 +122,98 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
-/******/ 	__webpack_require__("./jimu-core/lib/set-public-path.ts");
-/******/ 	var __webpack_exports__ = __webpack_require__("./your-extensions/widgets/map-update-status/src/runtime/widget.tsx");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!******************************************!*\
+  !*** ./jimu-core/lib/set-public-path.ts ***!
+  \******************************************/
+/**
+ * Webpack will replace __webpack_public_path__ with __webpack_require__.p to set the public path dynamically.
+ * The reason why we can't set the publicPath in webpack config is: we change the publicPath when download.
+ * */
+// eslint-disable-next-line
+// @ts-ignore
+__webpack_require__.p = window.jimuConfig.baseUrl;
+
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!**************************************************************************!*\
+  !*** ./your-extensions/widgets/map-update-status/src/runtime/widget.tsx ***!
+  \**************************************************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Widget)
+/* harmony export */ });
+/* harmony import */ var jimu_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jimu-core */ "jimu-core");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var jimu_arcgis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jimu-arcgis */ "jimu-arcgis");
+/** @jsx jsx */
+
+
+
+function Widget(props) {
+    var _a;
+    const [view, setView] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const [isUpdating, setIsUpdating] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const timeoutId = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const timeoutForMapUpdate = 30000;
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+        if (!view) {
+            return;
+        }
+        function setMapUpdateTimeout() {
+            timeoutId.current = setTimeout(overrideMapStatus, timeoutForMapUpdate);
+        }
+        function overrideMapStatus() {
+            console.warn(`forcing MapView 'updating' status to 'false' after waiting for ${timeoutForMapUpdate / 1000} seconds`);
+            setIsUpdating(false);
+        }
+        const mapView = view.view;
+        const updatingWatchHandle = mapView.watch('updating', (newStatus) => {
+            // don't allow isUpdating to remain true for > 30 secs
+            if (newStatus) {
+                setMapUpdateTimeout();
+            }
+            else {
+                clearTimeout(timeoutId.current);
+            }
+            setIsUpdating(newStatus);
+        });
+        return () => {
+            // remove at time componment is destroyed
+            if (updatingWatchHandle) {
+                updatingWatchHandle.remove();
+            }
+            if (timeoutId.current) {
+                clearTimeout(timeoutId.current);
+            }
+        };
+    }, [view]);
+    // only called when widget first loaded
+    const activeViewChangeHandler = (jmv) => {
+        if (!jmv) {
+            throw new Error('no MapView');
+        }
+        setView(jmv);
+    };
+    return ((0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "widget-use-map-view", style: { width: '100%', height: '100%', overflow: 'hidden' } },
+        (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)(jimu_arcgis__WEBPACK_IMPORTED_MODULE_2__.JimuMapViewComponent, { useMapWidgetId: (_a = props.useMapWidgetIds) === null || _a === void 0 ? void 0 : _a[0], onActiveViewChange: activeViewChangeHandler }),
+        (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: { overflowY: 'auto', height: '100%', paddingLeft: '5px' } },
+            (!view)
+                ? (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", null,
+                    (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", null, "MapView must be configured"))
+                : '',
+            (!isUpdating)
+                ? ''
+                : (0,jimu_core__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { style: { fontSize: 'medium', color: 'red' } }, "map is updating..."))));
+}
+
+})();
+
 /******/ 	return __webpack_exports__;
 /******/ })()
 
@@ -165,3 +221,4 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
 		}
 	};
 });
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2lkZ2V0cy9tYXAtdXBkYXRlLXN0YXR1cy9kaXN0L3J1bnRpbWUvd2lkZ2V0LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTs7Ozs7Ozs7Ozs7QUNBQTs7Ozs7Ozs7Ozs7QUNBQTs7Ozs7O1VDQUE7VUFDQTs7VUFFQTtVQUNBO1VBQ0E7VUFDQTtVQUNBO1VBQ0E7VUFDQTtVQUNBO1VBQ0E7VUFDQTtVQUNBO1VBQ0E7VUFDQTs7VUFFQTtVQUNBOztVQUVBO1VBQ0E7VUFDQTs7Ozs7V0N0QkE7V0FDQTtXQUNBO1dBQ0E7V0FDQSx5Q0FBeUMsd0NBQXdDO1dBQ2pGO1dBQ0E7V0FDQTs7Ozs7V0NQQTs7Ozs7V0NBQTtXQUNBO1dBQ0E7V0FDQSx1REFBdUQsaUJBQWlCO1dBQ3hFO1dBQ0EsZ0RBQWdELGFBQWE7V0FDN0Q7Ozs7O1dDTkE7Ozs7Ozs7Ozs7QUNBQTs7O0tBR0s7QUFDTCwyQkFBMkI7QUFDM0IsYUFBYTtBQUNiLHFCQUF1QixHQUFHLE1BQU0sQ0FBQyxVQUFVLENBQUMsT0FBTzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUNObkQsZUFBZTtBQUNnQztBQUNJO0FBQ1k7QUFJaEQsU0FBUyxNQUFNLENBQUUsS0FBK0I7O0lBQzdELE1BQU0sQ0FBQyxJQUFJLEVBQUUsT0FBTyxDQUFDLEdBQUcsK0NBQVEsQ0FBYyxJQUFJLENBQUM7SUFDbkQsTUFBTSxDQUFDLFVBQVUsRUFBRSxhQUFhLENBQUMsR0FBRywrQ0FBUSxDQUFDLEtBQUssQ0FBQztJQUNuRCxNQUFNLFNBQVMsR0FBRyw2Q0FBTSxDQUFDLElBQUksQ0FBQztJQUM5QixNQUFNLG1CQUFtQixHQUFHLEtBQUs7SUFFakMsZ0RBQVMsQ0FBQyxHQUFHLEVBQUU7UUFDYixJQUFJLENBQUMsSUFBSSxFQUFFO1lBQUUsT0FBTTtTQUFFO1FBRXJCLFNBQVMsbUJBQW1CO1lBQzFCLFNBQVMsQ0FBQyxPQUFPLEdBQUcsVUFBVSxDQUFDLGlCQUFpQixFQUFFLG1CQUFtQixDQUFDO1FBQ3hFLENBQUM7UUFFRCxTQUFTLGlCQUFpQjtZQUN4QixPQUFPLENBQUMsSUFBSSxDQUFDLGtFQUFrRSxtQkFBbUIsR0FBRyxJQUFJLFVBQVUsQ0FBQztZQUNwSCxhQUFhLENBQUMsS0FBSyxDQUFDO1FBQ3RCLENBQUM7UUFFRCxNQUFNLE9BQU8sR0FBRyxJQUFJLENBQUMsSUFBSTtRQUV6QixNQUFNLG1CQUFtQixHQUFHLE9BQU8sQ0FBQyxLQUFLLENBQ3ZDLFVBQVUsRUFDVixDQUFDLFNBQVMsRUFBRSxFQUFFO1lBQ1osc0RBQXNEO1lBQ3RELElBQUksU0FBUyxFQUFFO2dCQUNiLG1CQUFtQixFQUFFO2FBQ3RCO2lCQUFNO2dCQUNMLFlBQVksQ0FBQyxTQUFTLENBQUMsT0FBTyxDQUFDO2FBQ2hDO1lBQ0QsYUFBYSxDQUFDLFNBQVMsQ0FBQztRQUMxQixDQUFDLENBQUM7UUFFSixPQUFPLEdBQUcsRUFBRTtZQUNWLHlDQUF5QztZQUN6QyxJQUFJLG1CQUFtQixFQUFFO2dCQUN2QixtQkFBbUIsQ0FBQyxNQUFNLEVBQUU7YUFDN0I7WUFDRCxJQUFJLFNBQVMsQ0FBQyxPQUFPLEVBQUU7Z0JBQUUsWUFBWSxDQUFDLFNBQVMsQ0FBQyxPQUFPLENBQUM7YUFBRTtRQUM1RCxDQUFDO0lBQ0gsQ0FBQyxFQUFFLENBQUMsSUFBSSxDQUFDLENBQUM7SUFFVix1Q0FBdUM7SUFDdkMsTUFBTSx1QkFBdUIsR0FBRyxDQUFDLEdBQWdCLEVBQUUsRUFBRTtRQUNuRCxJQUFJLENBQUMsR0FBRyxFQUFFO1lBQUUsTUFBTSxJQUFJLEtBQUssQ0FBQyxZQUFZLENBQUM7U0FBRTtRQUMzQyxPQUFPLENBQUMsR0FBRyxDQUFDO0lBQ2QsQ0FBQztJQUVELE9BQU8sQ0FDTCx3REFBSyxTQUFTLEVBQUMscUJBQXFCLEVBQUMsS0FBSyxFQUFFLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLFFBQVEsRUFBRSxRQUFRLEVBQUU7UUFDL0YsK0NBQUMsNkRBQW9CLElBQ25CLGNBQWMsRUFBRSxXQUFLLENBQUMsZUFBZSwwQ0FBRyxDQUFDLENBQUMsRUFDMUMsa0JBQWtCLEVBQUUsdUJBQXVCLEdBQ3RCO1FBRXZCLHdEQUFLLEtBQUssRUFBRSxFQUFFLFNBQVMsRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxXQUFXLEVBQUUsS0FBSyxFQUFFO1lBQ2xFLENBQUMsQ0FBQyxJQUFJLENBQUM7Z0JBQ04sQ0FBQyxDQUFDO29CQUNFLDBGQUF1QyxDQUNuQztnQkFDUixDQUFDLENBQUMsRUFBRTtZQUVMLENBQUMsQ0FBQyxVQUFVLENBQUM7Z0JBQ1osQ0FBQyxDQUFDLEVBQUU7Z0JBQ0osQ0FBQyxDQUFDLHlEQUFNLEtBQUssRUFBRSxFQUFFLFFBQVEsRUFBRSxRQUFRLEVBQUUsS0FBSyxFQUFFLEtBQUssRUFBRSx5QkFBMkIsQ0FFNUUsQ0FDRixDQUNQO0FBQ0gsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2V4Yi1jbGllbnQvZXh0ZXJuYWwgc3lzdGVtIFwiamltdS1hcmNnaXNcIiIsIndlYnBhY2s6Ly9leGItY2xpZW50L2V4dGVybmFsIHN5c3RlbSBcImppbXUtY29yZVwiIiwid2VicGFjazovL2V4Yi1jbGllbnQvZXh0ZXJuYWwgc3lzdGVtIFwiamltdS1jb3JlL3JlYWN0XCIiLCJ3ZWJwYWNrOi8vZXhiLWNsaWVudC93ZWJwYWNrL2Jvb3RzdHJhcCIsIndlYnBhY2s6Ly9leGItY2xpZW50L3dlYnBhY2svcnVudGltZS9kZWZpbmUgcHJvcGVydHkgZ2V0dGVycyIsIndlYnBhY2s6Ly9leGItY2xpZW50L3dlYnBhY2svcnVudGltZS9oYXNPd25Qcm9wZXJ0eSBzaG9ydGhhbmQiLCJ3ZWJwYWNrOi8vZXhiLWNsaWVudC93ZWJwYWNrL3J1bnRpbWUvbWFrZSBuYW1lc3BhY2Ugb2JqZWN0Iiwid2VicGFjazovL2V4Yi1jbGllbnQvd2VicGFjay9ydW50aW1lL3B1YmxpY1BhdGgiLCJ3ZWJwYWNrOi8vZXhiLWNsaWVudC8uL2ppbXUtY29yZS9saWIvc2V0LXB1YmxpYy1wYXRoLnRzIiwid2VicGFjazovL2V4Yi1jbGllbnQvLi95b3VyLWV4dGVuc2lvbnMvd2lkZ2V0cy9tYXAtdXBkYXRlLXN0YXR1cy9zcmMvcnVudGltZS93aWRnZXQudHN4Il0sInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gX19XRUJQQUNLX0VYVEVSTkFMX01PRFVMRV9qaW11X2FyY2dpc19fOyIsIm1vZHVsZS5leHBvcnRzID0gX19XRUJQQUNLX0VYVEVSTkFMX01PRFVMRV9qaW11X2NvcmVfXzsiLCJtb2R1bGUuZXhwb3J0cyA9IF9fV0VCUEFDS19FWFRFUk5BTF9NT0RVTEVfcmVhY3RfXzsiLCIvLyBUaGUgbW9kdWxlIGNhY2hlXG52YXIgX193ZWJwYWNrX21vZHVsZV9jYWNoZV9fID0ge307XG5cbi8vIFRoZSByZXF1aXJlIGZ1bmN0aW9uXG5mdW5jdGlvbiBfX3dlYnBhY2tfcmVxdWlyZV9fKG1vZHVsZUlkKSB7XG5cdC8vIENoZWNrIGlmIG1vZHVsZSBpcyBpbiBjYWNoZVxuXHR2YXIgY2FjaGVkTW9kdWxlID0gX193ZWJwYWNrX21vZHVsZV9jYWNoZV9fW21vZHVsZUlkXTtcblx0aWYgKGNhY2hlZE1vZHVsZSAhPT0gdW5kZWZpbmVkKSB7XG5cdFx0cmV0dXJuIGNhY2hlZE1vZHVsZS5leHBvcnRzO1xuXHR9XG5cdC8vIENyZWF0ZSBhIG5ldyBtb2R1bGUgKGFuZCBwdXQgaXQgaW50byB0aGUgY2FjaGUpXG5cdHZhciBtb2R1bGUgPSBfX3dlYnBhY2tfbW9kdWxlX2NhY2hlX19bbW9kdWxlSWRdID0ge1xuXHRcdC8vIG5vIG1vZHVsZS5pZCBuZWVkZWRcblx0XHQvLyBubyBtb2R1bGUubG9hZGVkIG5lZWRlZFxuXHRcdGV4cG9ydHM6IHt9XG5cdH07XG5cblx0Ly8gRXhlY3V0ZSB0aGUgbW9kdWxlIGZ1bmN0aW9uXG5cdF9fd2VicGFja19tb2R1bGVzX19bbW9kdWxlSWRdKG1vZHVsZSwgbW9kdWxlLmV4cG9ydHMsIF9fd2VicGFja19yZXF1aXJlX18pO1xuXG5cdC8vIFJldHVybiB0aGUgZXhwb3J0cyBvZiB0aGUgbW9kdWxlXG5cdHJldHVybiBtb2R1bGUuZXhwb3J0cztcbn1cblxuIiwiLy8gZGVmaW5lIGdldHRlciBmdW5jdGlvbnMgZm9yIGhhcm1vbnkgZXhwb3J0c1xuX193ZWJwYWNrX3JlcXVpcmVfXy5kID0gKGV4cG9ydHMsIGRlZmluaXRpb24pID0+IHtcblx0Zm9yKHZhciBrZXkgaW4gZGVmaW5pdGlvbikge1xuXHRcdGlmKF9fd2VicGFja19yZXF1aXJlX18ubyhkZWZpbml0aW9uLCBrZXkpICYmICFfX3dlYnBhY2tfcmVxdWlyZV9fLm8oZXhwb3J0cywga2V5KSkge1xuXHRcdFx0T2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIGtleSwgeyBlbnVtZXJhYmxlOiB0cnVlLCBnZXQ6IGRlZmluaXRpb25ba2V5XSB9KTtcblx0XHR9XG5cdH1cbn07IiwiX193ZWJwYWNrX3JlcXVpcmVfXy5vID0gKG9iaiwgcHJvcCkgPT4gKE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChvYmosIHByb3ApKSIsIi8vIGRlZmluZSBfX2VzTW9kdWxlIG9uIGV4cG9ydHNcbl9fd2VicGFja19yZXF1aXJlX18uciA9IChleHBvcnRzKSA9PiB7XG5cdGlmKHR5cGVvZiBTeW1ib2wgIT09ICd1bmRlZmluZWQnICYmIFN5bWJvbC50b1N0cmluZ1RhZykge1xuXHRcdE9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCBTeW1ib2wudG9TdHJpbmdUYWcsIHsgdmFsdWU6ICdNb2R1bGUnIH0pO1xuXHR9XG5cdE9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCAnX19lc01vZHVsZScsIHsgdmFsdWU6IHRydWUgfSk7XG59OyIsIl9fd2VicGFja19yZXF1aXJlX18ucCA9IFwiXCI7IiwiLyoqXHJcbiAqIFdlYnBhY2sgd2lsbCByZXBsYWNlIF9fd2VicGFja19wdWJsaWNfcGF0aF9fIHdpdGggX193ZWJwYWNrX3JlcXVpcmVfXy5wIHRvIHNldCB0aGUgcHVibGljIHBhdGggZHluYW1pY2FsbHkuXHJcbiAqIFRoZSByZWFzb24gd2h5IHdlIGNhbid0IHNldCB0aGUgcHVibGljUGF0aCBpbiB3ZWJwYWNrIGNvbmZpZyBpczogd2UgY2hhbmdlIHRoZSBwdWJsaWNQYXRoIHdoZW4gZG93bmxvYWQuXHJcbiAqICovXHJcbi8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZVxyXG4vLyBAdHMtaWdub3JlXHJcbl9fd2VicGFja19wdWJsaWNfcGF0aF9fID0gd2luZG93LmppbXVDb25maWcuYmFzZVVybFxyXG4iLCIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IEFsbFdpZGdldFByb3BzLCBqc3ggfSBmcm9tICdqaW11LWNvcmUnXG5pbXBvcnQgeyB1c2VTdGF0ZSwgdXNlRWZmZWN0LCB1c2VSZWYgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IEppbXVNYXBWaWV3LCBKaW11TWFwVmlld0NvbXBvbmVudCB9IGZyb20gJ2ppbXUtYXJjZ2lzJ1xuLy8gaW1wb3J0IHsgZGVmYXVsdE1lc3NhZ2VzIGFzIGppbXVVSU1lc3NhZ2VzIH0gZnJvbSAnamltdS11aSdcbmltcG9ydCB7IElNQ29uZmlnIH0gZnJvbSAnLi4vY29uZmlnJ1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBXaWRnZXQgKHByb3BzOiBBbGxXaWRnZXRQcm9wczxJTUNvbmZpZz4pIHtcbiAgY29uc3QgW3ZpZXcsIHNldFZpZXddID0gdXNlU3RhdGU8SmltdU1hcFZpZXc+KG51bGwpXG4gIGNvbnN0IFtpc1VwZGF0aW5nLCBzZXRJc1VwZGF0aW5nXSA9IHVzZVN0YXRlKGZhbHNlKVxuICBjb25zdCB0aW1lb3V0SWQgPSB1c2VSZWYobnVsbClcbiAgY29uc3QgdGltZW91dEZvck1hcFVwZGF0ZSA9IDMwMDAwXG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBpZiAoIXZpZXcpIHsgcmV0dXJuIH1cblxuICAgIGZ1bmN0aW9uIHNldE1hcFVwZGF0ZVRpbWVvdXQgKCkge1xuICAgICAgdGltZW91dElkLmN1cnJlbnQgPSBzZXRUaW1lb3V0KG92ZXJyaWRlTWFwU3RhdHVzLCB0aW1lb3V0Rm9yTWFwVXBkYXRlKVxuICAgIH1cblxuICAgIGZ1bmN0aW9uIG92ZXJyaWRlTWFwU3RhdHVzICgpIHtcbiAgICAgIGNvbnNvbGUud2FybihgZm9yY2luZyBNYXBWaWV3ICd1cGRhdGluZycgc3RhdHVzIHRvICdmYWxzZScgYWZ0ZXIgd2FpdGluZyBmb3IgJHt0aW1lb3V0Rm9yTWFwVXBkYXRlIC8gMTAwMH0gc2Vjb25kc2ApXG4gICAgICBzZXRJc1VwZGF0aW5nKGZhbHNlKVxuICAgIH1cblxuICAgIGNvbnN0IG1hcFZpZXcgPSB2aWV3LnZpZXdcblxuICAgIGNvbnN0IHVwZGF0aW5nV2F0Y2hIYW5kbGUgPSBtYXBWaWV3LndhdGNoKFxuICAgICAgJ3VwZGF0aW5nJyxcbiAgICAgIChuZXdTdGF0dXMpID0+IHtcbiAgICAgICAgLy8gZG9uJ3QgYWxsb3cgaXNVcGRhdGluZyB0byByZW1haW4gdHJ1ZSBmb3IgPiAzMCBzZWNzXG4gICAgICAgIGlmIChuZXdTdGF0dXMpIHtcbiAgICAgICAgICBzZXRNYXBVcGRhdGVUaW1lb3V0KClcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dElkLmN1cnJlbnQpXG4gICAgICAgIH1cbiAgICAgICAgc2V0SXNVcGRhdGluZyhuZXdTdGF0dXMpXG4gICAgICB9KVxuXG4gICAgcmV0dXJuICgpID0+IHtcbiAgICAgIC8vIHJlbW92ZSBhdCB0aW1lIGNvbXBvbm1lbnQgaXMgZGVzdHJveWVkXG4gICAgICBpZiAodXBkYXRpbmdXYXRjaEhhbmRsZSkge1xuICAgICAgICB1cGRhdGluZ1dhdGNoSGFuZGxlLnJlbW92ZSgpXG4gICAgICB9XG4gICAgICBpZiAodGltZW91dElkLmN1cnJlbnQpIHsgY2xlYXJUaW1lb3V0KHRpbWVvdXRJZC5jdXJyZW50KSB9XG4gICAgfVxuICB9LCBbdmlld10pXG5cbiAgLy8gb25seSBjYWxsZWQgd2hlbiB3aWRnZXQgZmlyc3QgbG9hZGVkXG4gIGNvbnN0IGFjdGl2ZVZpZXdDaGFuZ2VIYW5kbGVyID0gKGptdjogSmltdU1hcFZpZXcpID0+IHtcbiAgICBpZiAoIWptdikgeyB0aHJvdyBuZXcgRXJyb3IoJ25vIE1hcFZpZXcnKSB9XG4gICAgc2V0VmlldyhqbXYpXG4gIH1cblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwid2lkZ2V0LXVzZS1tYXAtdmlld1wiIHN0eWxlPXt7IHdpZHRoOiAnMTAwJScsIGhlaWdodDogJzEwMCUnLCBvdmVyZmxvdzogJ2hpZGRlbicgfX0+XG4gICAgICA8SmltdU1hcFZpZXdDb21wb25lbnRcbiAgICAgICAgdXNlTWFwV2lkZ2V0SWQ9e3Byb3BzLnVzZU1hcFdpZGdldElkcz8uWzBdfVxuICAgICAgICBvbkFjdGl2ZVZpZXdDaGFuZ2U9e2FjdGl2ZVZpZXdDaGFuZ2VIYW5kbGVyfT5cbiAgICAgIDwvSmltdU1hcFZpZXdDb21wb25lbnQ+XG5cbiAgICAgIDxkaXYgc3R5bGU9e3sgb3ZlcmZsb3dZOiAnYXV0bycsIGhlaWdodDogJzEwMCUnLCBwYWRkaW5nTGVmdDogJzVweCcgfX0+XG4gICAgICAgIHsoIXZpZXcpXG4gICAgICAgICAgPyA8ZGl2PlxuICAgICAgICAgICAgICA8c3Bhbj5NYXBWaWV3IG11c3QgYmUgY29uZmlndXJlZDwvc3Bhbj5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDogJydcbiAgICAgICAgfVxuICAgICAgICB7KCFpc1VwZGF0aW5nKVxuICAgICAgICAgID8gJydcbiAgICAgICAgICA6IDxzcGFuIHN0eWxlPXt7IGZvbnRTaXplOiAnbWVkaXVtJywgY29sb3I6ICdyZWQnIH19Pm1hcCBpcyB1cGRhdGluZy4uLjwvc3Bhbj5cbiAgICAgICAgfVxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gIClcbn1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==

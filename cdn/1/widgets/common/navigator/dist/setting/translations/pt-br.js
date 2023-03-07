@@ -1,1 +1,1 @@
-define({_widgetLabel:"Navegação de Visualizações",tabStyle:"Estilo de guia",navBtnStyle:"Estilo do botão de navegação"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Navegação de Visualizações",tabStyle:"Estilo de guia",navBtnStyle:"Estilo do botão de navegação",stepTips:"Funciona apenas quando uma animação de transição é definida para o widget Seção correspondente."})}}}));

@@ -1,1 +1,1 @@
-define({_widgetLabel:"การนำทางมุมมอง",tabStyle:"สไตล์ของแท็บ",navBtnStyle:"สไตล์ปุ่มการนำทาง"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"การนำทางมุมมอง",tabStyle:"สไตล์ของแท็บ",navBtnStyle:"สไตล์ปุ่มการนำทาง",stepTips:"ใช้ได้เฉพาะเมื่อตั้งค่าภาพเคลื่อนไหวการเปลี่ยนสำหรับวิดเจ็ตส่วนที่ตรงกัน"})}}}));

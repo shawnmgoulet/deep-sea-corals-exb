@@ -1,1 +1,1 @@
-define({_widgetLabel:"Info Fitur",noDeataMessageDefaultText:"Tidak ada data yang ditemukan.",featureNumbers:"{index} dari {count}",featureInfoDataActionLabel:"{layer} pilihan info fitur"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Info Fitur",noDeataMessageDefaultText:"Tidak ada data yang ditemukan.",featureNumbers:"{index} dari {count}",featureInfoDataActionLabel:"{layer} pilihan info fitur"})}}}));

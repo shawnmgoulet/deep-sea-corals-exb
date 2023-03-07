@@ -1,1 +1,1 @@
-define({_widgetLabel:"Visninger-navigasjon",tabStyle:"Fanestil",navBtnStyle:"Navigasjonsknappestil"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Visninger-navigasjon",tabStyle:"Fanestil",navBtnStyle:"Navigasjonsknappestil",stepTips:"Fungerer bare når en overgangsanimasjon er angitt for den tilsvarende Seksjon-widgeten."})}}}));

@@ -1,1 +1,1 @@
-define({_widgetLabel:"Навигация по видам",tabStyle:"Стиль вкладок",navBtnStyle:"Стиль кнопок навигации"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Навигация по видам",tabStyle:"Стиль вкладок",navBtnStyle:"Стиль кнопок навигации",stepTips:"Работает только в том случае, если для соответствующего виджета Секция установлена анимация перехода."})}}}));

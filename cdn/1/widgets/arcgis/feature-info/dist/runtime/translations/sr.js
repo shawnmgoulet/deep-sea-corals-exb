@@ -1,1 +1,1 @@
-define({_widgetLabel:"Informacije za komponentu",noDeataMessageDefaultText:"Nema pronađenih podataka.",featureNumbers:"{index} od {count}",featureInfoDataActionLabel:"{layer} informacija o selekciji geoobjekta"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Informacije za komponentu",noDeataMessageDefaultText:"Nema pronađenih podataka.",featureNumbers:"{index} od {count}",featureInfoDataActionLabel:"{layer} informacija o selekciji geoobjekta"})}}}));

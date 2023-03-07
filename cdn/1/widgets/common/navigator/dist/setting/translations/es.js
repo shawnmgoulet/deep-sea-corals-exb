@@ -1,1 +1,1 @@
-define({_widgetLabel:"Navegación por vistas",tabStyle:"Estilo de pestaña",navBtnStyle:"Estilo de botón de navegación"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Navegación por vistas",tabStyle:"Estilo de pestaña",navBtnStyle:"Estilo de botón de navegación",stepTips:"Solo funciona cuando se define una animación de transición para el widget de sección correspondiente."})}}}));

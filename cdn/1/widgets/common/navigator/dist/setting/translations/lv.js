@@ -1,1 +1,1 @@
-define({_widgetLabel:"Skatu navigācija",tabStyle:"Cilnes stils",navBtnStyle:"Navigācijas pogas stils"});
+System.register([],(function(a){return{execute:function(){a({_widgetLabel:"Skatu navigācija",tabStyle:"Cilnes stils",navBtnStyle:"Navigācijas pogas stils",stepTips:"Darbojas tikai tad, ja atbilstošajam sadaļas logrīkam ir iestatīta pārejas animācija."})}}}));

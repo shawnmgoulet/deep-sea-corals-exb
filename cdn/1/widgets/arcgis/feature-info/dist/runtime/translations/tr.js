@@ -1,1 +1,1 @@
-define({_widgetLabel:"Detay Bilgisi",noDeataMessageDefaultText:"Veri bulunamadı.",featureNumbers:"{index} / {count}",featureInfoDataActionLabel:"{layer} detay bilgisi seçimi"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Detay Bilgisi",noDeataMessageDefaultText:"Veri bulunamadı.",featureNumbers:"{index} / {count}",featureInfoDataActionLabel:"{layer} detay bilgisi seçimi"})}}}));

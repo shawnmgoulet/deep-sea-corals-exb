@@ -1,1 +1,1 @@
-define({_widgetLabel:"Visar navigering",tabStyle:"Flikstil",navBtnStyle:"Stil på navigeringsknapp"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Visar navigering",tabStyle:"Flikstil",navBtnStyle:"Stil på navigeringsknapp",stepTips:"Fungerar bara när en övergångsanimering är inställd för motsvarande sektionswidget."})}}}));

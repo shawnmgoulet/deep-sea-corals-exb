@@ -1,1 +1,1 @@
-define({_widgetLabel:"Näkymissä siirtyminen",tabStyle:"Välilehtityyli",navBtnStyle:"Siirtymispainikkeen tyyli"});
+System.register([],(function(i){return{execute:function(){i({_widgetLabel:"Näkymissä siirtyminen",tabStyle:"Välilehtityyli",navBtnStyle:"Siirtymispainikkeen tyyli",stepTips:"Toimii vain, kun vastaavalle Osa-pienoisohjelmalle on määritetty siirtymäanimaatio."})}}}));

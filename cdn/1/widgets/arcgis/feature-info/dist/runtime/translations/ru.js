@@ -1,1 +1,1 @@
-define({_widgetLabel:"Информация об объекте",noDeataMessageDefaultText:"Данные не найдены.",featureNumbers:"{index} из {count}",featureInfoDataActionLabel:"Выборка информации об объекте {layer}"});
+System.register([],(function(e){return{execute:function(){e({_widgetLabel:"Информация об объекте",noDeataMessageDefaultText:"Данные не найдены.",featureNumbers:"{index} из {count}",featureInfoDataActionLabel:"Выборка информации об объекте {layer}"})}}}));
