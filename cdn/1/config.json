@@ -1558,8 +1558,13 @@
       "config": {
         "functionConfig": {
           "altText": "",
-          "toolTip": "",
-          "linkParam": {},
+          "toolTip": "go to the National Centers for Environmental Information",
+          "linkParam": {
+            "linkType": "WEB_ADDRESS",
+            "openType": "_blank",
+            "value": "https://www.ncei.noaa.gov",
+            "expression": null
+          },
           "scale": "Fit",
           "imageParam": {
             "url": "${appResourceUrl}/images/widget_1/1663878503405.png",
@@ -1580,7 +1585,8 @@
           },
           "imageDisplayQualityMode": "ORIGINAL",
           "imgSourceType": "",
-          "srcExpression": null
+          "srcExpression": null,
+          "toolTipExpression": null
         },
         "styleConfig": {}
       },
@@ -1593,7 +1599,8 @@
             "url": ""
           }
         }
-      }
+      },
+      "useDataSources": []
     },
     "widget_2": {
       "uri": "widgets/common/text/",
@@ -4451,7 +4458,7 @@
     },
     "backgroundColor": "#112e51"
   },
-  "timestamp": 1678147258000,
+  "timestamp": 1678238086698,
   "footer": {
     "layout": {
       "LARGE": "layout_17"
@@ -4461,5 +4468,9 @@
     },
     "backgroundColor": "#112e51"
   },
-  "customTheme": {}
+  "customTheme": {
+    "colors": {
+      "light": "#ffffff"
+    }
+  }
 }
