@@ -2,7 +2,7 @@
   "created": 1674861375968,
   "description": "",
   "id": "0",
-  "modified": 1678150486102,
+  "modified": 1678238136373,
   "owner": "ncei_noaa",
   "tags": [],
   "thumbnail": null,
@@ -15,7 +15,7 @@
     "JavaScript",
     "status: Published",
     "version:1.10.0",
-    "publishVersion:1.9.0"
+    "publishVersion:1.10.0"
   ],
   "portalUrl": "https://noaa.maps.arcgis.com",
   "username": "ncei_noaa",
