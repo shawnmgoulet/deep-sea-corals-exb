@@ -4,12 +4,27 @@ import { useState, useEffect, useRef } from 'react'
 import { JimuMapView, JimuMapViewComponent } from 'jimu-arcgis'
 // import { defaultMessages as jimuUIMessages } from 'jimu-ui'
 import { IMConfig } from '../config'
+import reactiveUtils, {watch} from 'esri/core/reactiveUtils'
 
 export default function Widget (props: AllWidgetProps<IMConfig>) {
   const [view, setView] = useState<JimuMapView>(null)
   const [isUpdating, setIsUpdating] = useState(false)
   const timeoutId = useRef(null)
   const timeoutForMapUpdate = 30000
+
+  // Esri SMG Code review: it appears that using reactiveUtils and watching the updating property for when false
+  // logs/reacts when the view is complete (extent changes, layer views drawing, etc.). I would suggest exploring
+  // making use of reactiveUtils, specifically using the watch method against the View's updating property
+  // (unless you have?) to set the isUpdating prop to false (& correspondingly removing the string from the UI).
+  reactiveUtils.watch(
+    () => !view?.view?.updating,
+    (updating) => {
+        if (updating) {
+      console.log("updating complete")
+      console.log(updating)
+        }
+    }
+  )
 
   useEffect(() => {
     if (!view) { return }

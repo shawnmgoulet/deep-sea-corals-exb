@@ -21,6 +21,7 @@ import FeatureLayer from 'esri/layers/FeatureLayer'
 import reactiveUtils, { watch } from 'esri/core/reactiveUtils'
 import MapView from 'esri/views/MapView'
 import LayerView from 'esri/views/layers/LayerView'
+import Query from 'esri/rest/support/Query'
 import './widget.css'
 
 // const { useSelector } = ReactRedux
@@ -36,9 +37,30 @@ function convertAndFormatCoordinates (coords: object, dp: number = 5) {
 }
 
 async function countAllSamples (dataSource: QueriableDataSource) {
+  // Esri SMG Code review: I would change this over to a const pointing to a constructed FeatureLayer
+  // you could construct it on widget load within a useEffect(()=>{}, []) using the empty brackets so
+  // it only runs once and then sets a prop, which then you use in this contAllSamples function. That
+  // withstanding...see below
+  const featureLayer = new FeatureLayer ({
+    portalItem: {
+      id: dataSource.dataSourceJson.itemId
+    }
+  });
+
   if (!dataSource) {
     throw new Error('DataSource cannot be null')
   }
+  // Esri SMG Code review (continued):Make use of the REST API that is shipped with ExB and then use
+  // the FeatureLayer's queryFeatureCount to get the count of the features. From my testing, this
+  // approach here is noticably more performant than what is currently in place. You are also doing
+  // this on l123 (<FeatureLayer>.queryFeatureCounty())
+  const query = new Query({
+    where: "1 = 1",
+    outFields: ['*'],
+    returnCountOnly: "true",
+  });
+  featureLayer.queryFeatureCount(query).then((results) => console.log(results));
+
   const startTime = new Date()
   const searchParams = new URLSearchParams([
     ['where', '1=1'],

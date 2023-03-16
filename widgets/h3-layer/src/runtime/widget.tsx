@@ -402,6 +402,9 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
   return (
     <div>
       {h3 ? formatHexbinSummary() : <p>Please select a hexbin...</p>}
+      {/* Esri SMG Code review: An alternative approach could be to set a jimuMapView variable that uses state.
+      Then use the usEffect hook to run the hitTest code that's currenly within the activeViewChangeHandler function.
+      Has this approach already been explored and discarded for some reason(s)?  */}
       <JimuMapViewComponent
         useMapWidgetId={props.useMapWidgetIds?.[0]}
         onActiveViewChange={activeViewChangeHandler}
