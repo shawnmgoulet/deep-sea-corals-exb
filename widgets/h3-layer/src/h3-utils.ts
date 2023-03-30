@@ -11,6 +11,11 @@ import Polygon from 'esri/geometry/Polygon'
 import Color from 'esri/Color'
 
 // TODO derive from settings.tsx
+/* Esri SMG Code review: I believe the only path forward to achieve this is with redux
+but I've not seen this done. I've moved hexbinFeatureServiceUrl here, which could be a settings
+input, with logic to retrieve the value, if desired in the long term.
+*/
+const hexbinFeatureServiceUrl = 'https://services2.arcgis.com/C8EMgrsFcRFL6LrL/ArcGIS/rest/services/Deep_Sea_Corals_and_Sponges_summarized_in_level_4_hexbins/FeatureServer/0/query'
 const featureServiceUrl = 'https://services2.arcgis.com/C8EMgrsFcRFL6LrL/ArcGIS/rest/services/DSCRTP_NatDB_FeatureLayer/FeatureServer/0/query'
 const stdColor = new Color('whitesmoke')
 const highlightColor = new Color('yellow')
@@ -79,7 +84,7 @@ function createLayer (graphics) {
     ]
   })
 }
-
+// Esri SMG Code review: I'm unsure what this means and what I would be looking for to improve.
 // TODO Graphic layer geometries look OK but Feature layer geometries are not drawing correctly across AM
 // WARNING: function mutates the provided geometry
 function translateGraphic (graphic) {
@@ -268,7 +273,6 @@ async function getScientificNameCounts (h3, whereClause = '1=1') {
 // does not consider filter criteria
 // uses hardcoded URL different from points layer
 async function getEnvironmentalVariables(h3) {
-  const hexbinFeatureServiceUrl = 'https://services2.arcgis.com/C8EMgrsFcRFL6LrL/ArcGIS/rest/services/Deep_Sea_Corals_and_Sponges_summarized_in_level_4_hexbins/FeatureServer/0/query'
   const startTime = new Date()
   const searchParams = new URLSearchParams()
   searchParams.set('where', `h3='${h3}'`)

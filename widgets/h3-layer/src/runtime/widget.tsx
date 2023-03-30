@@ -33,7 +33,7 @@ import Graphic from 'esri/Graphic'
 import MapView from 'esri/views/MapView'
 import PopupTemplate from 'esri/PopupTemplate'
 // import TileLayer from 'esri/layers/TileLayer'
-import * as reactiveUtils from 'esri/core/reactiveUtils'
+// import reactiveUtils from 'esri/core/reactiveUtils'
 import { useState, useEffect, useRef } from 'react'
 import PhylumChart from './PhylumChart'
 import { IMConfig } from '../config'
@@ -91,10 +91,19 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
   const [serverError, setServerError] = useState(false)
   const queryParamsRef = useRef(null)
   const mapViewRef = useRef<MapView>(null)
+  const [jimuMapView, setJimuMapView] = useState<JimuMapView>(null)
+  // const layerUrlRef = useRef()
 
   // for convenience in JSX. cannot destruct from object because selectedGraphic may be null
   const h3 = selectedGraphic?.attributes.h3
   const pointCount = selectedGraphic?.attributes.count
+
+  // reactiveUtils.when(
+  //   () => jimuMapView?.view,
+  //   async () => {
+  //     const coralsLayer = jimuMapView.view.map.allLayers.filter(lyr => lyr.title === props.config.layerName).at(0) as FeatureLayer
+  //     layerUrlRef.current = coralsLayer.url
+  //   });
 
   // get state for this widget
   const widgetState = useSelector((state: IMState) => {
@@ -123,6 +132,88 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
     ))
     jimuHistory.changeView(sectionId, viewId)
   }
+
+  /* Esri SMG Code review: this code has been copied over and not modified, aside from comments added
+  and modified. This useEffect hook is invoked whenever the jimuMapView property changes. The core
+  of this code, however, within the ` jimuMapView.view.on('click')...` method only executes when
+  the end user clicks on the MapView. This approach seems to address the TODO comment within the
+  replaced  activeViewChangeHandler method.
+  */
+  useEffect(() => {
+    if (jimuMapView !== null) {
+      // To handle popup visibility
+      mapViewRef.current = jimuMapView.view as MapView
+      // To include as a hitTest option
+      const graphicsLayer = new GraphicsLayer({
+        title: 'Hexbins',
+        listMode: 'show'
+      })
+      graphicsLayerRef.current = graphicsLayer
+
+      // When we have a view, set the corals layer popupTemplate, add the graphics layer to the view's
+      // map, remove and rea-add graphics
+      jimuMapView.view.when(() => {
+        const coralsLayer = jimuMapView.view.map.allLayers.filter(lyr => lyr.title === props.config.layerName).at(0) as FeatureLayer
+  
+        // define new simple popupTemplate to override one provided via WebMap
+        // construct an explicit instance to make TypeScript happy
+        const popupTemplate = new PopupTemplate({
+          title: '{ScientificName}',
+          content: 'Catalog Number: {CatalogNumber}'
+        })
+        if (coralsLayer !== undefined) {
+        coralsLayer.popupTemplate = popupTemplate
+        }
+  
+        jimuMapView.view.map.add(graphicsLayer)
+        // queryParams not needed since initial draw is for all features
+        getGraphics().then(graphics => {
+          graphicsLayerRef.current.removeAll()
+          graphicsLayerRef.current.graphics.addMany(graphics)
+        })
+  
+        const hitTestOptions = {
+          include: [coralsLayer, graphicsLayer]
+        }
+        // On click of the view, execute a hitTest, then invoke the mapClickHandler function, lastly
+        // log the popup completion
+        jimuMapView.view.on('click', (evt) => {
+          console.log('mapclick detected: ', evt)
+          const startTimeForPopup = new Date()
+          jimuMapView.view
+          .hitTest(evt, hitTestOptions)
+          .then((response) => mapClickHandler(response))
+          .finally(() => {
+            const elapsedMillisecsForPopup = new Date().getTime() - startTimeForPopup.getTime()
+            console.log(`popup completed in ${elapsedMillisecsForPopup / 1000} seconds`)
+          })
+  /*
+          // attempt to delay execution of hitTest on points, hexbin layers until webmap popup completes
+          jmv.view.popup.fetchFeatures(evt).then((response) => {
+            // default to empty array to keep TypeScript happy
+            const layerViewPromises = response.promisesPerLayerView || []
+            Promise.allSettled(layerViewPromises).then(() => {
+              // popup should be complete at this point
+              const elapsedMillisecsForPopup = new Date().getTime() - startTimeForPopup.getTime()
+              console.log(`popup completed in ${elapsedMillisecsForPopup / 1000} seconds`)
+              const startTimeForHitTest = new Date()
+              jmv.view
+                .hitTest(evt, hitTestOptions)
+                .then((response) => mapClickHandler(response))
+                .catch((error) => console.error('Error in hitTest: ', error))
+                .finally(() => {
+                  const elapsedMillisecsForHitTest = new Date().getTime() - startTimeForHitTest.getTime()
+                  console.log(`hitTest completed in ${elapsedMillisecsForHitTest / 1000} seconds`)
+                })
+            }) // end promisesPerLayerView
+            .finally(() => console.log('end promisesPerLayerView'))
+          })
+          .finally(() => console.log('end popup.fetchFeatures')) // end popup.fetchFeatures
+    */
+        }) // end view on click
+      }) // end MapView#when
+    }
+  }, [jimuMapView])
 
   useEffect(() => {
     // console.log('queryParams changed, updating graphics layer: ', widgetState?.queryParams)
@@ -402,12 +493,14 @@ export default function H3Layer (props: AllWidgetProps<IMConfig>) {
   return (
     <div>
       {h3 ? formatHexbinSummary() : <p>Please select a hexbin...</p>}
-      {/* Esri SMG Code review: An alternative approach could be to set a jimuMapView variable that uses state.
-      Then use the usEffect hook to run the hitTest code that's currenly within the activeViewChangeHandler function.
-      Has this approach already been explored and discarded for some reason(s)?  */}
+      {/* Esri SMG Code review: Replaced the activeViewChangeHandler function with making use of the
+       usEffect hook to run the hitTest code that's currently within the activeViewChangeHandler function. */}
       <JimuMapViewComponent
         useMapWidgetId={props.useMapWidgetIds?.[0]}
-        onActiveViewChange={activeViewChangeHandler}
+        // onActiveViewChange={activeViewChangeHandler}
+        onActiveViewChange={(jmv: JimuMapView) => {
+          setJimuMapView(jmv);
+        }}
       />
     </div>
 
