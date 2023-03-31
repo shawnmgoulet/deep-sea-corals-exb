@@ -36,58 +36,60 @@ function convertAndFormatCoordinates (coords: object, dp: number = 5) {
   return `${geoExtent.xmin.toFixed(dp)}, ${geoExtent.ymin.toFixed(dp)}, ${geoExtent.xmax.toFixed(dp)}, ${geoExtent.ymax.toFixed(dp)}`
 }
 
-async function countAllSamples (dataSource: QueriableDataSource) {
-  // Esri SMG Code review: I would change this over to a const pointing to a constructed FeatureLayer
-  // you could construct it on widget load within a useEffect(()=>{}, []) using the empty brackets so
-  // it only runs once and then sets a prop, which then you use in this contAllSamples function. That
-  // withstanding...see below
-  const featureLayer = new FeatureLayer ({
-    portalItem: {
-      id: dataSource.dataSourceJson.itemId
-    }
-  });
+// async function countAllSamples (dataSource: QueriableDataSource) {
+//   const featureLayer = new FeatureLayer ({
+//     portalItem: {
+//       id: dataSource.dataSourceJson.itemId
+//     }
+//   });
 
-  if (!dataSource) {
-    throw new Error('DataSource cannot be null')
-  }
-  // Esri SMG Code review (continued):Make use of the REST API that is shipped with ExB and then use
-  // the FeatureLayer's queryFeatureCount to get the count of the features. From my testing, this
-  // approach here is noticably more performant than what is currently in place. You are also doing
-  // this on l123 (<FeatureLayer>.queryFeatureCounty())
-  const query = new Query({
-    where: "1 = 1",
-    outFields: ['*'],
-    returnCountOnly: "true",
-  });
-  featureLayer.queryFeatureCount(query).then((results) => console.log(results));
+//   if (!dataSource) {
+//     throw new Error('DataSource cannot be null')
+//   }
+//   // Esri SMG Code review (continued):Make use of the REST API that is shipped with ExB and then use
+//   // the FeatureLayer's queryFeatureCount to get the count of the features. From my testing, this
+//   // approach here is noticably more performant than what is currently in place. You are also doing
+//   // this on l123 (<FeatureLayer>.queryFeatureCounty())
+//   const query = new Query({
+//     where: "1 = 1",
+//     outFields: ['*'],
+//     returnCountOnly: "true",
+//   });
+//   featureLayer.queryFeatureCount(query)
+//   .then((results) => {
+//     console.log("COUNTS: ", results)
+//     setTotalRecordCount(results)
+//   })
+//   .catch((error) => console.error(error));
 
-  const startTime = new Date()
-  const searchParams = new URLSearchParams([
-    ['where', '1=1'],
-    ['returnCountOnly', 'true'],
-    ['f', 'json']
-  ])
-  // TODO replace w/ FeatureLayer query
-  const response = await fetch(dataSource.url + '/query', {
-    method: 'POST',
-    body: searchParams
-  })
-  if (!response.ok) {
-    console.error('failed to count total records from ' + dataSource.url)
-    return
-  }
+//   // const startTime = new Date()
+//   // const searchParams = new URLSearchParams([
+//   //   ['where', '1=1'],
+//   //   ['returnCountOnly', 'true'],
+//   //   ['f', 'json']
+//   // ])
+//   // TODO replace w/ FeatureLayer query
+//   // Esri SMG Code review: Replaced with logic above
+//   // const response = await fetch(dataSource.url + '/query', {
+//   //   method: 'POST',
+//   //   body: searchParams
+//   // })
+//   // if (!response.ok) {
+//   //   console.error('failed to count total records from ' + dataSource.url)
+//   //   return
+//   }
   // TODO replace with FeatureDataSource#queryCount?
   // dataSource.queryCount({}).then(result => {
   //   return result.count
   // })
   // console.log(`Total record count complete in ${(new Date().getTime() - startTime.getTime()) / 1000} seconds`)
-  return response.json()
-}
+  // return response.json()
+// }
 
 export default function Widget (props: AllWidgetProps<IMConfig>) {
   // console.log('re-rendering filtered-record-count...')
-  const [totalRecordCount, setTotalRecordCount] = useState(null)
-  const [filteredRecordCount, setFilteredRecordCount] = useState(null)
+  const [totalRecordCount, setTotalRecordCount] = useState<any>(null)
+  const [filteredRecordCount, setFilteredRecordCount] = useState<any>(null)
   const [dataSource, setDataSource] = useState<FeatureLayerDataSource>()
   const [view, setView] = useState<JimuMapView>(null)
   const [serverError, setServerError] = useState(false)
@@ -96,6 +98,49 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   const [layerDefinition, setLayerDefinition] = useState<string>()
   const mapLayerRef = useRef<FeatureLayer>()
   const layerViewRef = useRef<FeatureLayerView>()
+
+  async function countAllSamples (dataSource: QueriableDataSource) {
+    const featureLayer = new FeatureLayer ({
+      portalItem: {
+        id: dataSource.dataSourceJson.itemId
+      }
+    });
+  
+    if (!dataSource) {
+      throw new Error('DataSource cannot be null')
+    }
+    // Esri SMG Code review (continued):Make use of the REST API that is shipped with ExB and then use
+    // the FeatureLayer's queryFeatureCount to get the count of the features. From my testing, this
+    // approach here is noticably more performant than what is currently in place. You are also doing
+    // this on l123 (<FeatureLayer>.queryFeatureCounty())
+    const query = new Query({
+      where: "1 = 1",
+      outFields: ['*'],
+      returnCountOnly: "true",
+    });
+    featureLayer.queryFeatureCount(query)
+    .then((results) => {
+      console.log("COUNTS: ", results)
+      setTotalRecordCount(results)
+    })
+    .catch((error) => console.error(error));
+  
+    // const startTime = new Date()
+    // const searchParams = new URLSearchParams([
+    //   ['where', '1=1'],
+    //   ['returnCountOnly', 'true'],
+    //   ['f', 'json']
+    // ])
+    // TODO replace w/ FeatureLayer query
+    // Esri SMG Code review: Replaced with logic above
+    // const response = await fetch(dataSource.url + '/query', {
+    //   method: 'POST',
+    //   body: searchParams
+    // })
+    // if (!response.ok) {
+    //   console.error('failed to count total records from ' + dataSource.url)
+    //   return
+    }
 
   useEffect(() => {
     if (!view) { return }
@@ -137,7 +182,7 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
           setServerError(true)
         }
       }).finally(() => {
-        abortControllerRef.current = null
+        abortControllerRef.current = undefined
       })
     }
 
@@ -234,15 +279,12 @@ export default function Widget (props: AllWidgetProps<IMConfig>) {
   }, [view, dataSource])
 
   // runs once
-  function onDataSourceCreated (ds: DataSource) {
+  async function onDataSourceCreated (ds: DataSource) {
     if (!ds) { throw new Error('no DataSource') }
 
     const featureLayerDataSource = ds as FeatureLayerDataSource
-    setDataSource(featureLayerDataSource)
-    countAllSamples(featureLayerDataSource).then((response) => {
-      // console.log(`counted ${response.count} total records in ${featureLayerDataSource.url}`)
-      setTotalRecordCount(response.count)
-    })
+     setDataSource(featureLayerDataSource)
+     countAllSamples(featureLayerDataSource)
   }
 
   const activeViewChangeHandler = (jmv: JimuMapView) => {
