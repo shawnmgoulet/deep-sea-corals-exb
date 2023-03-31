@@ -9,57 +9,74 @@ import reactiveUtils, {watch} from 'esri/core/reactiveUtils'
 export default function Widget (props: AllWidgetProps<IMConfig>) {
   const [view, setView] = useState<JimuMapView>(null)
   const [isUpdating, setIsUpdating] = useState(false)
-  const timeoutId = useRef(null)
-  const timeoutForMapUpdate = 30000
+  // const timeoutId = useRef(null) // no longer needed
+  // const timeoutForMapUpdate = 30000 // no longer needed
 
-  // Esri SMG Code review: it appears that using reactiveUtils and watching the updating property for when false
-  // logs/reacts when the view is complete (extent changes, layer views drawing, etc.). I would suggest exploring
-  // making use of reactiveUtils, specifically using the watch method against the View's updating property
-  // (unless you have?) to set the isUpdating prop to false (& correspondingly removing the string from the UI).
+  /* Esri SMG Code review: the following 3 reactiveUtils implementations replace the below useEffect
+  and seem to be performing as necessary
+  */
   reactiveUtils.watch(
-    () => !view?.view?.updating,
+    () => view?.view?.updating,
     (updating) => {
-        if (updating) {
-      console.log("updating complete")
-      console.log(updating)
+        if (updating === true) {
+      // console.log("updating")
+      setIsUpdating(updating)
+      // setIsUpdating(updating)
+        } else {
+          // console.log("updating complete")
+          setIsUpdating(updating)
         }
     }
   )
 
-  useEffect(() => {
-    if (!view) { return }
+  // Handle widget instantiation updating condition
+  reactiveUtils.whenOnce(
+    () => view?.view?.updating)
+    .then((status) => {
+      setIsUpdating(status)
+    });
+  
+  // Handle widget instantiation not updating condition
+  reactiveUtils.whenOnce(
+    () => !view?.view?.updating)
+    .then((status) => {
+      setIsUpdating(!status)
+    });
 
-    function setMapUpdateTimeout () {
-      timeoutId.current = setTimeout(overrideMapStatus, timeoutForMapUpdate)
-    }
+  // useEffect(() => {
+  //   if (!view) { return }
 
-    function overrideMapStatus () {
-      console.warn(`forcing MapView 'updating' status to 'false' after waiting for ${timeoutForMapUpdate / 1000} seconds`)
-      setIsUpdating(false)
-    }
+  //   function setMapUpdateTimeout () {
+  //     timeoutId.current = setTimeout(overrideMapStatus, timeoutForMapUpdate)
+  //   }
 
-    const mapView = view.view
+  //   function overrideMapStatus () {
+  //     console.warn(`forcing MapView 'updating' status to 'false' after waiting for ${timeoutForMapUpdate / 1000} seconds`)
+  //     setIsUpdating(false)
+  //   }
 
-    const updatingWatchHandle = mapView.watch(
-      'updating',
-      (newStatus) => {
-        // don't allow isUpdating to remain true for > 30 secs
-        if (newStatus) {
-          setMapUpdateTimeout()
-        } else {
-          clearTimeout(timeoutId.current)
-        }
-        setIsUpdating(newStatus)
-      })
+  //   const mapView = view.view
 
-    return () => {
-      // remove at time componment is destroyed
-      if (updatingWatchHandle) {
-        updatingWatchHandle.remove()
-      }
-      if (timeoutId.current) { clearTimeout(timeoutId.current) }
-    }
-  }, [view])
+  //   const updatingWatchHandle = mapView.watch(
+  //     'updating',
+  //     (newStatus) => {
+  //       // don't allow isUpdating to remain true for > 30 secs
+  //       if (newStatus) {
+  //         setMapUpdateTimeout()
+  //       } else {
+  //         clearTimeout(timeoutId.current)
+  //       }
+  //       setIsUpdating(newStatus)
+  //     })
+
+  //   return () => {
+  //     // remove at time componment is destroyed
+  //     if (updatingWatchHandle) {
+  //       updatingWatchHandle.remove()
+  //     }
+  //     if (timeoutId.current) { clearTimeout(timeoutId.current) }
+  //   }
+  // }, [view])
 
   // only called when widget first loaded
   const activeViewChangeHandler = (jmv: JimuMapView) => {
